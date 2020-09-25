@@ -40,6 +40,7 @@ header ul {
 header ul li a {
   text-decoration: none;
   color: white;
+  font-weight: bold;
   padding: 26px;
   transition: 0.5s;
 }
@@ -49,13 +50,47 @@ header ul li a:hover {
   color: black;
 }
 main {
-  width: 90%;
+  width: 50%;
   height: 90vh;
   margin-top: 80px;
-  background-color: rgba(211, 211, 211, 0.801);
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 25px;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.6);
+}
+main form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+main form input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border-radius: 2px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+}
+main form label {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+main form .btn input[type="submit"],
+input[type="reset"] {
+  padding: 15px;
+  float: right;
+  margin: 15px;
+  outline: none;
+  border-radius: 10px;
+}
+main form .btn input[type="submit"] {
+  background-color: lightgreen;
 }
 footer {
   width: 90%;
