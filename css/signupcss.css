@@ -7,7 +7,23 @@ header {
   width: 100%;
   height: 70px;
   background-color: cornflowerblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 main {
   width: 100%;
+  height: 80vh;
+  background-color: crimson;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer {
+  width: 100%;
+  height: 70px;
+  background-color: darkcyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
