@@ -51,14 +51,25 @@ header ul li a:hover {
 }
 main {
   width: 50%;
-  height: 90vh;
   margin-top: 80px;
   background-color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.6);
+}
+main section {
+  text-align: center;
+  margin: 20px 0;
+}
+main section h1 {
+  font-size: 30px;
+  color: rgb(48, 168, 216);
+}
+main section p {
+  color: rgb(48, 168, 216);
 }
 main form {
   display: flex;
@@ -87,10 +98,32 @@ input[type="reset"] {
   float: right;
   margin: 15px;
   outline: none;
-  border-radius: 10px;
+  border-radius: 15px;
+  width: 100%;
 }
 main form .btn input[type="submit"] {
-  background-color: lightgreen;
+  color: white;
+  background-image: linear-gradient(to right, rgb(28, 143, 219), blue);
+}
+main form .term {
+  margin: 10px 0;
+}
+main form .term a {
+  color: blue;
+  text-decoration: none;
+}
+main .bottom {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+main .bottom i {
+  color: rgb(28, 143, 219);
+  font-size: 35px;
+  padding: 10px 25px;
+  margin: 10px;
+  border-radius: 25px;
+  box-shadow: 5px 5px 5px rgba(28, 143, 219, 0.301);
 }
 footer {
   width: 90%;
