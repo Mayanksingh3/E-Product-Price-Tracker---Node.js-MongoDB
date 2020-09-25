@@ -9,9 +9,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-image: url(../images/body-background.jpeg);
+  background-image: url(../images/body-background.jpg);
+  background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 html {
   scroll-margin-top: 70px;
@@ -51,7 +52,7 @@ main {
   width: 90%;
   height: 90vh;
   margin-top: 80px;
-  background-color: lightgray;
+  background-color: rgba(211, 211, 211, 0.801);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +61,7 @@ footer {
   width: 90%;
   height: 70vh;
   margin-top: 10px;
-  background-color: #0a0c11;
+  background-color: #0a0c11f5;
   display: flex;
   justify-content: center;
   align-items: center;
