@@ -51,7 +51,7 @@ main {
   width: 90%;
   height: 90vh;
   margin-top: 80px;
-  background-color: crimson;
+  background-color: lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
