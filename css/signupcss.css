@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-image: url(../images/body-background.jpg);
+  background-image: url(../images/body-background.jpeg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
