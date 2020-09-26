@@ -50,33 +50,52 @@ header ul li a:hover {
   color: black;
 }
 main {
-  width: 50%;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+.left {
+  margin-top: 80px;
+  background-image: url(../images/gh.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: white;
+  width: 49%;
+  border-radius: 5px;
+  height: max-content;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.6);
+  height: inherit;
+}
+.right {
+  width: 48%;
   margin-top: 80px;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 25px;
+  border-radius: 5px;
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.6);
 }
-main section {
+.right section {
   text-align: center;
   margin: 20px 0;
 }
-main section h1 {
+.right section h1 {
   font-size: 30px;
   color: rgb(48, 168, 216);
 }
-main section p {
+.right section p {
   color: rgb(48, 168, 216);
 }
-main form {
+.right form {
   display: flex;
   flex-direction: column;
   width: 80%;
 }
-main form input[type="email"],
+.right form input[type="email"],
 input[type="password"],
 input[type="text"] {
   width: 100%;
@@ -87,12 +106,12 @@ input[type="text"] {
   border: none;
   border-bottom: 1px solid black;
 }
-main form label {
+.right form label {
   margin-top: 10px;
   font-size: 15px;
 }
 
-main form .btn input[type="submit"],
+.right form .btn input[type="submit"],
 input[type="reset"] {
   padding: 15px;
   float: right;
@@ -101,23 +120,23 @@ input[type="reset"] {
   border-radius: 15px;
   width: 100%;
 }
-main form .btn input[type="submit"] {
+.right form .btn input[type="submit"] {
   color: white;
   background-image: linear-gradient(to right, rgb(28, 143, 219), blue);
 }
-main form .term {
+.right form .term {
   margin: 10px 0;
 }
 main form .term a {
   color: blue;
   text-decoration: none;
 }
-main .bottom {
+.right .bottom {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-main .bottom i {
+.right .bottom i {
   color: rgb(28, 143, 219);
   font-size: 35px;
   padding: 10px 25px;
@@ -125,7 +144,7 @@ main .bottom i {
   border-radius: 25px;
   box-shadow: 5px 5px 5px rgba(28, 143, 219, 0.301);
 }
-main form .loginS h5 {
+.right form .loginS h5 {
   margin: 15px 0;
   font-size: 12px;
   float: right;
