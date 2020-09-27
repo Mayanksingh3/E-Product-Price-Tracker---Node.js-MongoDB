@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-image: url(../images/body-background1.jpg);
+  background-image: url("../images/body-background1.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -58,7 +58,7 @@ main {
 }
 .left {
   margin-top: 80px;
-  background-image: url(../images/gh.jpg);
+  background-image: url("../images/gh.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-color: white;
@@ -150,7 +150,7 @@ main form .term a {
   float: right;
   text-align: right;
 }
-footer {
+/* footer {
   width: 90%;
   height: 70vh;
   margin-top: 10px;
@@ -158,4 +158,101 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+} */
+
+
+
+
+ 
+form{
+  padding: 10px;
+  margin-left: 100px;
+  width: 500px;
+  background-color: #fff;
+  margin: 20px;
 }
+.login{
+  width: 100%;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.login .left{
+  width: 50%;
+  border-radius: 10px;
+  background-image: url("../images/loginleft.png");
+  margin-left: 90px;
+}
+.login .right{
+  width: 50%;
+  border-radius: 10px;
+  margin-left: 15px;
+  margin-right: 90px;
+}
+.first, .second, .third{
+  padding: 5px;
+}
+body{
+  background-color: lightcyan;
+}
+.first i{  
+  font-size: 40px;
+  margin-left: 60px;
+  color: white;
+}
+.first p{
+  font-size: 50px;
+  padding: 30px;
+  margin-left: 160px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: skyblue;
+}
+.first{
+  height: 100px;
+}
+.second p{
+  margin-left: 360px;
+}
+.second a{
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  background-color: blue;
+}
+input{
+  outline: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid black;
+  box-sizing: border-box;
+  width: 500px;
+}
+ .third a{
+  width: 60px;
+  padding: 10px;
+  text-decoration: none;
+  /* background-color: grey; */
+  display: inline-block;
+  color: white;
+  border-radius: 20px;
+} 
+.third a:hover{
+  color: blue;
+}
+.third i{
+  margin-top: 5px;
+  font-size: 40px;
+  margin-left: 150px;
+  color: blueviolet;
+  box-shadow: 5px 5px 5px rgba(28, 143, 219, 0.301);
+}
+.third i:hover{
+  background-color:green;
+}  
