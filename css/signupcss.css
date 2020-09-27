@@ -160,47 +160,45 @@ main form .term a {
   align-items: center;
 } */
 
-
-
-
- 
-form{
+form {
   padding: 10px;
   margin-left: 100px;
   width: 500px;
   background-color: #fff;
   margin: 20px;
 }
-.login{
+.login {
   width: 100%;
   margin: 20px;
   display: flex;
   flex-direction: row;
 }
-.login .left{
+.login .left {
   width: 50%;
   border-radius: 10px;
   background-image: url("../images/loginleft.png");
   margin-left: 90px;
 }
-.login .right{
+.login .right {
   width: 50%;
   border-radius: 10px;
   margin-left: 15px;
   margin-right: 90px;
 }
-.first, .second, .third{
+.first,
+.second,
+.third {
   padding: 5px;
 }
-body{
+body {
   background-color: lightcyan;
 }
-.first i{  
+.first i {
   font-size: 40px;
   margin-left: 60px;
   color: white;
 }
-.first p{
+.first p {
   font-size: 50px;
   padding: 30px;
   margin-left: 160px;
@@ -209,13 +207,13 @@ body{
   align-items: center;
   color: skyblue;
 }
-.first{
+.first {
   height: 100px;
 }
-.second p{
+.second p {
   margin-left: 360px;
 }
-.second a{
+.second a {
   margin: 10px;
   padding: 15px;
   border-radius: 10px;
@@ -226,7 +224,7 @@ body{
   color: white;
   background-color: blue;
 }
-input{
+input {
   outline: none;
   background: transparent;
   border: 0;
@@ -234,7 +232,7 @@ input{
   box-sizing: border-box;
   width: 500px;
 }
- .third a{
+.third a {
   width: 60px;
   padding: 10px;
   text-decoration: none;
@@ -242,17 +240,14 @@ input{
   display: inline-block;
   color: white;
   border-radius: 20px;
-} 
-.third a:hover{
-  color: blue;
 }
-.third i{
+.third i {
   margin-top: 5px;
   font-size: 40px;
   margin-left: 150px;
   color: blueviolet;
   box-shadow: 5px 5px 5px rgba(28, 143, 219, 0.301);
 }
-.third i:hover{
-  background-color:green;
-}  
+.third i:hover {
+  background-color: green;
+}
