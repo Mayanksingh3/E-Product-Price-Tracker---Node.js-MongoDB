@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+</head>
+<style>
+    form{
+  padding: 10px;
+  margin-left: 100px;
+  width: 500px;
+  background-color: #fff;
+  margin: 20px;
+}
+.login{
+  width: 100%;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.login .left{
+  width: 50%;
+  border-radius: 10px;
+  background-image: url("../images/loginleft.png");
+  margin-left: 90px;
+}
+.login .right{
+  width: 50%;
+  border-radius: 10px;
+  margin-left: 15px;
+  margin-right: 90px;
+}
+.first, .second, .third{
+  padding: 5px;
+}
+body{
+  background-color: lightcyan;
+}
+.first i{  
+  font-size: 40px;
+  margin-left: 60px;
+  color: white;
+}
+.first p{
+  font-size: 50px;
+  padding: 30px;
+  margin-left: 160px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: skyblue;
+}
+.first{
+  height: 100px;
+}
+.second p{
+  margin-left: 360px;
+}
+.second a{
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  background-color: blue;
+}
+input{
+  outline: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid black;
+  box-sizing: border-box;
+  width: 500px;
+}
+ .third a{
+  width: 60px;
+  padding: 10px;
+  text-decoration: none;
+  /* background-color: grey; */
+  display: inline-block;
+  color: white;
+  border-radius: 20px;
+} 
+.third a:hover{
+  color: blue;
+}
+.third i{
+  margin-top: 5px;
+  font-size: 40px;
+  margin-left: 150px;
+  color: blueviolet;
+  box-shadow: 5px 5px 5px rgba(28, 143, 219, 0.301);
+}
+.third i:hover{
+  background-color:green;
+}  
+</style>
+<body>
+
+    <!-- <form action="/" method="post">
+        <input type="text" name="newItem">
+        <input type="text" name="newPassword">
+        <button type="submit" name="button">Add</button>
+    </form> -->
+
+    <div class="login">
+        <div class="left"></div>
+        <div class="right">
+      <form action="/" method="post" >
+        <div class="first">
+        <p> <strong>Login</strong></p>
+        </div>
+        <br>
+        <div class="second">
+        <label for="name"></label><br>
+        <input type="text" name="newName" placeholder="Your Name" required>
+        <label for="email"></label><br>
+        <input type="text" name="newItem" id="name" placeholder="Your Email" required><br> <br>
+        <label for="pass"></label><br>
+        <input type="password" name="newPassword" id="pass" placeholder="Your Password" required><br> <br>
+        <p>Forgot <strong>Password?</strong></p> <br>
+        <button type="submit" name="button">Log in</button>
+        <p style="margin-left: 250px;">Don't have an account? <strong>Sign Up</strong></p>
+        <br>
+        </div>
+        <div class="third">
+            <br>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+        </div>
+      </form>
+      </div>
+      </div>
+
+
+      <ul>
+        <% for(var i = 0;i<users.length; i++){ %>
+            <h1><%= personName[i] %> :</h1>
+            <li><%= users[i] %></li>
+            <li><%= hisPass[i] %></li>
+        <% } %>
+        </ul>
+
+
+</body>
+</html>
