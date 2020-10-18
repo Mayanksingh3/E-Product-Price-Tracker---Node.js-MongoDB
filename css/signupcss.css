@@ -150,6 +150,14 @@ main form .term a {
   float: right;
   text-align: right;
 }
+@media (max-width: 900px) {
+  .left {
+    display: none;
+  }
+  .right {
+    width: 90%;
+  }
+}
 /* footer {
   width: 90%;
   height: 70vh;
