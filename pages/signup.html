@@ -40,7 +40,7 @@
         <label for="password">Repeats Password *</label>
         <input type="password" name="password2" id="password2" required placeholder="Enter Your Password ...">
         <div class="term">
-          <input type="checkbox" name="term" id="term" required> I accept to the <a href="">Terms and Conditions</a> and want to recieve updates
+          <input type="checkbox" name="term" id="term" required onclick="matchPassword()"> I accept to the <a href="">Terms and Conditions</a> and want to recieve updates
         </div>
        <div class="btn">
         <input type="submit" value="SIGN UP">
@@ -56,5 +56,17 @@
       </section>
     </main>
     <!-- <footer><h2>Footer</h2></footer> -->
+    <script>
+      function matchPassword(){
+        var pass1 = document.getElementById("password").value;
+        var pass2 = document.getElementById("password2").value;
+        if(pass1 !== pass2){
+          document.getElementById("term").checked = false;
+          document.getElementById("password").value = "";
+          document.getElementById("password2").value = "";
+          alert("Password Mismatch ! ");
+        }
+      }
+    </script>
   </body>
 </html>
