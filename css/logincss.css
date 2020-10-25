@@ -142,7 +142,7 @@ main form .term a {
   align-items: center;
 }
 .right .bottom i {
-  color: rgb(28, 143, 219);
+  color: blueviolet;
   font-size: 35px;
   padding: 10px 25px;
   margin: 10px;
@@ -260,4 +260,24 @@ input {
   margin-left: 150px;
   color: blueviolet;
   box-shadow: 5px 5px 5px rgba(28, 143, 219, 0.301);
+}
+@media (max-width: 900px) {
+  .left {
+    display: none;
+  }
+  .right {
+    width: 90%;
+  }
+  .login {
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 713px) {
+  .menu {
+    display: none;
+  }
+  header {
+    justify-content: center;
+  }
 }

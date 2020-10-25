@@ -64,8 +64,8 @@ main {
 }
 .top {
   height: 40vh;
-  width: 70%;
-  background-color: rgba(211, 211, 211, 0.774);
+  width: 40%;
+  background-color: rgba(0, 0, 0, 0.75);
   text-align: center;
 }
 .top img {
@@ -75,8 +75,8 @@ main {
 }
 
 .bottom {
-  background-color: rgba(211, 211, 211, 0.774);
-  width: 70%;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 40%;
   height: 40vh;
   display: flex;
   justify-content: center;
@@ -86,6 +86,7 @@ main .bottom a {
   text-decoration: none;
   color: white;
   margin: auto;
+  border-radius: 15px;
   padding: 25px 70px;
   background-color: blueviolet;
 }

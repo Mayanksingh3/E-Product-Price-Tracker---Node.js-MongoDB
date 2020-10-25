@@ -158,6 +158,14 @@ main form .term a {
     width: 90%;
   }
 }
+@media (max-width: 713px) {
+  .menu {
+    display: none;
+  }
+  header {
+    justify-content: center;
+  }
+}
 /* footer {
   width: 90%;
   height: 70vh;

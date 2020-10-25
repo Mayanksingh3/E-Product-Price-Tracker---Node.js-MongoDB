@@ -15,7 +15,7 @@
 <body>
     <header>
         <h2>E-Product Price Tracker</h2></i>
-        <ul>
+        <ul class="menu">
           <li><a href="#">Home</a></li>
           <li><a href="#">Team</a></li>
           <li><a href="#">Contacts</a></li>
@@ -25,7 +25,7 @@
       <div class="login">
         <div class="left"></div>
         <div class="right">
-      <form action="" >
+      <form action="/" method="POST" >
         <div class="first">
         <p> <strong>Login</strong></p>
         </div>
@@ -35,18 +35,17 @@
         <input type="text" name="" id="name" placeholder="Your Email" required><br> <br>
         <label for="pass"></label><br>
         <input type="password" name="" id="pass" placeholder="Your Password" required><br> <br>
-        <p>Forgot <strong>Password?</strong></p> <br>
-        <input type="submit" value="LOG IN"></input>
-        <p style="margin-left: 250px;">Don't have an account? <strong>Sign Up</strong></p>
+        <div class="loginS"><h5>Don't have an account? <a href="#">Signin</a></h5></div>
         <br>
-        </div>
-        <div class="third">
-            <br>
-            <a href="#"><i class="fa fa-facebook-official"></i></a>
-            <a href="#"><i class="fa fa-google"></i></a>
-            <a href="#"><i class="fa fa-github"></i></a>
+        <input type="submit" value="LOG IN"></input>
         </div>
       </form>
+      <p>or Sign in with</p>
+      <div class="bottom">
+        <a href=""> <i class="fa fa-facebook-official"></i></a>
+        <a href=""><i class="fa fa-google-plus"></i></a>
+        <a href=""><i class="fa fa-github"></i></a>
+      </div>
       </div>
       </div>
 </body>
