@@ -13,8 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", function(req, res){
-    res.render('newItems', 
-    {users : items, hisPass:pass, personName:names});
+    res.render("dashboard.ejs");
 });
 
 
