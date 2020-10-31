@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up ! | E-Product Price Tracker</title>
+    <link rel="stylesheet" href="../css/signupcss.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header>
+      <h2>E-Product Price Tracker</h2></i>
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contacts</a></li>
+        <li><a href="#">About us</a></li>
+      </ul>
+    </header>
+    <main>
+      <section class="left">
+      </section>
+      <section class="right">
+        <section>
+          <h1>Sign Up !</h1>
+          <p>Sign up and join the fun</p>
+        </section>
+      <form action="/" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter Your Name ...">
+        <label for="email">Email Address *</label>
+        <input type="email" name="email" id="email" required placeholder="Enter Your Email ... ">
+        <label for="password">Password *</label>
+        <input type="password" name="password" id="password" required placeholder="Enter Your Password ...">
+        <label for="password">Repeats Password *</label>
+        <input type="password" name="password2" id="password2" required placeholder="Enter Your Password ...">
+        <div class="term">
+          <input type="checkbox" name="term" id="term" required onclick="matchPassword()"> I accept to the <a href="">Terms and Conditions</a> and want to recieve updates
+        </div>
+       <div class="btn">
+        <input type="submit" value="SIGN UP">
+       </div>
+       <div class="loginS"><h5>Already have an account? <a href="#">Login</a></h5></div>
+      </form>
+      <p>or Sign in with</p>
+      <div class="bottom">
+        <a href=""> <i class="fa fa-facebook-official"></i></a>
+        <a href=""><i class="fa fa-google-plus"></i></a>
+        <a href=""><i class="fa fa-github"></i></a>
+      </div>
+      </section>
+    </main>
+    <!-- <footer><h2>Footer</h2></footer> -->
+    <script>
+      function matchPassword(){
+        var pass1 = document.getElementById("password").value;
+        var pass2 = document.getElementById("password2").value;
+        if(pass1 !== pass2){
+          document.getElementById("term").checked = false;
+          document.getElementById("password").value = "";
+          document.getElementById("password2").value = "";
+          alert("Password Mismatch ! ");
+        }
+      }
+    </script>
+  </body>
+</html>

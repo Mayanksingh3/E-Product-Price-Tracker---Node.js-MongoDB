@@ -4,8 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 var items = [];
-var pass = [];
-var names = [];
+var name;
 
 const app = express();
 
