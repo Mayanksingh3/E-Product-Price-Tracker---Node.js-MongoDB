@@ -1,5 +1,32 @@
 <%- include("header" )-%>
-
-<h1>Hello</h1>
-
+    <div class="main-container">
+        <img src="/images/circle1.png" alt="user image">
+        <h3>Welcome back! <%=userName%></h3>
+        <p><%=email%></p>
+    </div>
+    <form action="/item/<%=email%>" method="post">
+        <input type="text" placeholder="Enter the item's URL ">
+        <button type="submit">Add item</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th width="60%">Product Name</th>
+                <th width="12%">Product Price</th>
+                <th width="13%">Wanted Price</th>
+                <th width="12%">Tools</th>
+            </tr>
+        </thead>
+        <caption>PRODUCT RECORD</caption>
+        <tbody>
+            <% for(i=0; i < orders.length ; i++) {%>
+                <tr>
+                    <td><%=orders[i].productName%></td>
+                    <td><%=orders[i].price%></td>
+                    <td><%=orders[i].expectedPrice%></td>
+                    <td><a href=""><i class="material-icons delete">delete</i></a></td>
+                </tr>
+                <%}%>
+        </tbody>
+    </table>
 <%- include("footer") -%>

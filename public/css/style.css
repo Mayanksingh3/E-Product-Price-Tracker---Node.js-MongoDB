@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-image: url("../images/body-background1.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html {
+  scroll-margin-top: 70px;
+  scroll-behavior: smooth;
+}
+h2 {
+  color: white;
+}
+header {
+  width: 100%;
+  height: 70px;
+  background-image: linear-gradient(
+    to right,
+    blueviolet,
+    rgb(188, 135, 238),
+    blueviolet
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  position: fixed;
+  top: 0;
+}
+header ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+header ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 26px;
+  transition: 0.5s;
+}
+header ul li a:hover {
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+}
+main {
+  width: 99%;
+  min-height: 90vh;
+  margin-top: 80px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  background-color: white;
+}
+footer {
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer p {
+  color: white;
+}
+img {
+  height: 170px;
+  width: 170px;
+  border-radius: 50%;
+}
+.main-container {
+  display: flex;
+  border-radius: 15px;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightgray;
+  padding: 10px;
+}
+form {
+  padding: 10px;
+  display: block;
+  width: 90%;
+  margin: auto;
+}
+input[type="text"] {
+  width: 85%;
+  height: 40px;
+  outline: 5px;
+}
+button {
+  margin: 0 20px;
+  padding: 8px 15px;
+  color: white;
+  border-radius: 10px;
+  width: 100px;
+  background-color: limegreen;
+}
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.item-container {
+  width: 100%;
+  height: 100px;
+  border-radius: 15px;
+  background-color: lightgray;
+  margin: 5px 0;
+}
+table {
+  margin: 15px auto;
+  width: 95%;
+  background-color: #f5f5f5;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid #11151e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+caption {
+  border: 2px solid #11151e;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  background-color: #11151e;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+tr:last-child td {
+  border: none;
+}
+tr:hover {
+  background-color: #dcdcdc;
+}
+td {
+  border-bottom: 2px solid lightgray;
+}
+th {
+  border-bottom: 2px solid lightgray;
+}
+td,
+th {
+  padding: 1%;
+  text-align: justify;
+}
