@@ -48,6 +48,11 @@ app.get("/userdashboard/:user",(req,res) => {
     });
 });
 
+app.get("/signup",function (req, res){
+    res.sendFile(__dirname+"/pages/signup.html")
+});
+
+
 app.post("/login",(req,res) => {
     userEmail = req.body.email;
     userPassword = req.body.password;
@@ -65,12 +70,6 @@ app.post("/login",(req,res) => {
         }
     });
     
-});
-
-
-
-app.get("/signup",function (req, res){
-    res.sendFile(__dirname+"/pages/signup.html")
 });
 
 app.post("/signup",function(req,res){
@@ -107,8 +106,18 @@ app.post("/item/:user",function(req,res){
             });
             foundCustomer.orders.push(newOrder);
             foundCustomer.save();
-            newOrder.save();
+            //newOrder.save();
             res.redirect("/userdashboard/"+foundCustomer._email);
+        }
+    });
+});
+
+app.post("/delete/:user",function(req,res){
+    productID = req.body.delete;
+    userEmail = req.params.user;
+    Customer.findOneAndUpdate({_email:userEmail},{$pull:{orders:{_id:productID}}},function(err,found){
+        if(!err){
+            res.redirect("/userdashboard/"+userEmail);
         }
     });
 });

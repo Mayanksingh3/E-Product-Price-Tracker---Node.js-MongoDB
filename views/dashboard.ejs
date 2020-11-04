@@ -5,15 +5,16 @@
         <p><%=email%></p>
     </div>
     <form action="/item/<%=email%>" method="post">
-        <input type="text" placeholder="Enter the item's URL ">
-        <button type="submit">Add item</button>
+        <input type="text" name="URL" required placeholder="Enter the item's URL ">
+        <input type="number" name="userPrice" required placeholder="Enter Wanted Price (&#8377)">
+        <button id="ItemSubmit" type="submit">Add item</button>
     </form>
     <table>
         <thead>
             <tr>
                 <th width="60%">Product Name</th>
-                <th width="12%">Product Price</th>
-                <th width="13%">Wanted Price</th>
+                <th width="12%">Product Price (&#8377)</th>
+                <th width="13%">Wanted Price (&#8377)</th>
                 <th width="12%">Tools</th>
             </tr>
         </thead>
@@ -24,7 +25,9 @@
                     <td><%=orders[i].productName%></td>
                     <td><%=orders[i].price%></td>
                     <td><%=orders[i].expectedPrice%></td>
-                    <td><a href=""><i class="material-icons delete">delete</i></a></td>
+                    <td><form action="/delete/<%=email%>" method="POST">
+                        <button id="deleteItem" name="delete" value="<%=orders[i]._id%>" type="submit"><i class="material-icons delete">delete</i></button>
+                    </form></td>
                 </tr>
                 <%}%>
         </tbody>
