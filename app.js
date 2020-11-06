@@ -52,6 +52,21 @@ app.get("/signup",function (req, res){
     res.sendFile(__dirname+"/pages/signup.html")
 });
 
+app.get("/home",function(req,res){
+    res.render("home",{pageTitle:"Welcome ! | E-Product Price Tracker"});
+});
+
+app.get("/about",function(req,res){
+    res.render("about",{pageTitle:"About | E-Product Price Tracker"});
+});
+
+app.get("/contact",function(req,res){
+    res.render("contact",{pageTitle:"Contact | E-Product Price Tracker"});
+});
+
+app.get("/team",function(req,res){
+    res.render("team",{pageTitle:"Team | E-Product Price Tracker"});
+});
 
 app.post("/login",(req,res) => {
     userEmail = req.body.email;
@@ -100,9 +115,9 @@ app.post("/item/:user",function(req,res){
     Customer.findOne({_email:req.params.user},function(err,foundCustomer){
         if(!err){
             var newOrder = new Order({
-                productName:"Trimmer PHILIPPS-2",
-                price:200,
-                expectedPrice:180
+                productName:req.body.URL,
+                price:req.body.userPrice,
+                expectedPrice:req.body.userPrice-20
             });
             foundCustomer.orders.push(newOrder);
             foundCustomer.save();

@@ -55,6 +55,9 @@ header ul li a:hover {
   color: black;
 }
 main {
+  background-image: url(/images/signupleft.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   width: 99%;
   min-height: 90vh;
   margin-top: 80px;
@@ -161,4 +164,11 @@ th {
 }
 td i:hover {
   color: red;
+}
+.body-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
 }
