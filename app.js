@@ -125,16 +125,18 @@ app.post("/item/:user",function(req,res){
             url = url.split("?")[0];
             console.log(url);
             let data = await webScrapper(url,optWebsite);
-            console.log(data);
-            var newOrder = new Order({
-                productName: data.title,
-                url:url,
-                price:data.price,
-                imageUrl:data.image,
-                expectedPrice:req.body.userPrice
-            });
-            foundCustomer.orders.push(newOrder);
-            foundCustomer.save();
+            if(data != null){
+                console.log(data);
+                var newOrder = new Order({
+                    productName: data.title,
+                    url:url,
+                    price:data.price,
+                    imageUrl:data.image,
+                    expectedPrice:req.body.userPrice
+                });
+                foundCustomer.orders.push(newOrder);
+                foundCustomer.save();
+            }
             //newOrder.save();
             res.redirect("/userdashboard/"+foundCustomer._email);
         }
@@ -156,32 +158,36 @@ app.listen(3000, function(){
 });
 
 async function webScrapper(url,optWebsite){
-    const browser = await puppeteer.launch({headless:true});
-    const page = await browser.newPage();
-    await page.goto(url,{timeout:1200000,waitForSelector:productImage[optWebsite]});
     try{
-        let data = await page.evaluate((optWebsite,productTitle,productImage,productPrice)=>{
-            var title = document.querySelector(productTitle[optWebsite]).innerText;
-            var image = document.querySelector(productImage[optWebsite]).src;
-            var price;
-            var subElement = optWebsite==0 ? 7 : 1;
-            if(document.querySelector(productPrice[optWebsite]) != null){
-                price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement));
-            }else{
-                price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML,substring(subElement));
-            }
-            return{
-                title,
-                image,
-                price
-            }
-        }, optWebsite,productTitle,productImage,productPrice);
-        return data;
-    }catch(e){
-        console.log("Error Happend ! Please check if you have opted the details correctly");
-        res.redirect("/userdashboard/"+foundCustomer._email);
+        const browser = await puppeteer.launch({headless:true});
+        const page = await browser.newPage();
+        await page.goto(url,{timeout:1200000,waitForSelector:productImage[optWebsite]});
+        try{
+            let data = await page.evaluate((optWebsite,productTitle,productImage,productPrice)=>{
+                var title = document.querySelector(productTitle[optWebsite]).innerText;
+                var image = document.querySelector(productImage[optWebsite]).src;
+                var price;
+                var subElement = optWebsite==0 ? 7 : 1;
+                if(document.querySelector(productPrice[optWebsite]) != null){
+                    price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement));
+                }else{
+                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML,substring(subElement));
+                }
+                return{
+                    title,
+                    image,
+                    price
+                }
+            }, optWebsite,productTitle,productImage,productPrice);
+            return data;
+        }catch(e){
+            console.log("Error Happend ! Please check if you have opted the details correctly");
+        }
+        finally{
+            browser.close();
+        }
     }
-    finally{
-        browser.close();
+    catch(e){
+        console.log("Invalid URL Given");
     }
 }
