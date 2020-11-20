@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
 const puppeteer = require("puppeteer");
+var nodemailer = require('nodemailer');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
@@ -18,13 +19,56 @@ var productTitle = ['#productTitle','._35KyD6'];
 var productImage = ['#imgTagWrapperId > img','._1Nyybr'];
 var productPrice = ['#priceblock_ourprice','.CEmiEU > div > div','#priceblock_dealprice','.CEmiEU > div > div'];
 
-const orderSchema = new mongoose.Schema({
-    productName:String,
-    url:String,
-    imageUrl:String,
-    price: Number,
-    expectedPrice:Number
+// const orderSchema = new mongoose.Schema({
+//     productName:String,
+//     url:String,
+//     imageUrl:String,
+//     price: Number,
+//     expectedPrice:Number
+// });
+
+
+
+
+
+// Creating my new order schema.
+const orderSchema = {
+    emailID: String,
+    URL: String,
+    minPrice: Number
+  };
+  
+// Creating the model for my userorders schema.
+const Order = mongoose.model("userOrder", orderSchema);
+
+// Rendering ejs file to localhost:3000 
+app.get("/", function(req, res){
+    res.render("orderList.ejs");
 });
+
+
+// Saving every object given as an input in the input form.
+app.post("/", function(req, res){
+
+    const addEmail = req.body.newEmail;
+    const addUrl = req.body.newUrl;
+    const price = req.body.priceLimit;
+
+    const orderNew = new Order({
+        emailID: addEmail,
+        URL: addUrl,
+        minPrice: price
+    });
+
+    orderNew.save();
+    // res.send("Hello");
+    res.redirect("/");
+});
+
+
+
+
+
 const customerSchema = new mongoose.Schema({
     name:String,
     _email:String,
@@ -33,7 +77,7 @@ const customerSchema = new mongoose.Schema({
 });
 
 const Customer = mongoose.model("Customer",customerSchema);
-const Order = mongoose.model("Order",orderSchema);
+// const Order = mongoose.model("Order",orderSchema);
 
 
 app.get("/",(req, res) => {
@@ -152,6 +196,37 @@ app.post("/delete/:user",function(req,res){
         }
     });
 });
+
+
+//Sending the mail.
+// This function returns a transporter object.
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'priyamsrivastava9598@gmail.com',
+      pass: 'Coding1@gla'
+    }
+  });
+  
+  var mailOptions = {
+    from: 'priyamsrivastava9598@gmail.com',
+    to: 'priyamsrivastava731@gmail.com',
+    subject: 'Yuppy You It !!',
+    text: `Hii `
+  };
+  
+  // Function required to send the e-mail.
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+});
+
+
+
+
 
 app.listen(3000, function(){
     console.log("Server is running on port 3000!!!");
