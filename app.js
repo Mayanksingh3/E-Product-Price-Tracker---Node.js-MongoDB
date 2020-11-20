@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost:27017/customerDB",{useNewUrlParser:true,us
 var defaultList = [];
 var productTitle = ['#productTitle','._35KyD6'];
 var productImage = ['#imgTagWrapperId > img','._1Nyybr'];
-var productPrice = ['#priceblock_ourprice','._1vC4OE','#priceblock_dealprice','._1vC4OE'];
+var productPrice = ['#priceblock_ourprice','.CEmiEU > div > div','#priceblock_dealprice','.CEmiEU > div > div'];
 
 const orderSchema = new mongoose.Schema({
     productName:String,
@@ -181,6 +181,7 @@ async function webScrapper(url,optWebsite){
             }, optWebsite,productTitle,productImage,productPrice);
             return data;
         }catch(e){
+            console.log(e);
             console.log("Error Happend ! Please check if you have opted the details correctly");
         }
         finally{
