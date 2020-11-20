@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
+const puppeteer = require("puppeteer");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
@@ -13,9 +14,14 @@ app.set('view engine', 'ejs');
 mongoose.connect("mongodb://localhost:27017/customerDB",{useNewUrlParser:true,useUnifiedTopology:true});
 
 var defaultList = [];
+var productTitle = ['#productTitle','._35KyD6'];
+var productImage = ['#imgTagWrapperId > img','._1Nyybr'];
+var productPrice = ['#priceblock_ourprice','.CEmiEU > div > div','#priceblock_dealprice','.CEmiEU > div > div'];
 
 const orderSchema = new mongoose.Schema({
     productName:String,
+    url:String,
+    imageUrl:String,
     price: Number,
     expectedPrice:Number
 });
@@ -112,15 +118,25 @@ app.post("/signup",function(req,res){
 })
 
 app.post("/item/:user",function(req,res){
-    Customer.findOne({_email:req.params.user},function(err,foundCustomer){
+    Customer.findOne({_email:req.params.user},async function(err,foundCustomer){
         if(!err){
-            var newOrder = new Order({
-                productName:req.body.URL,
-                price:req.body.userPrice,
-                expectedPrice:req.body.userPrice-20
-            });
-            foundCustomer.orders.push(newOrder);
-            foundCustomer.save();
+            const optWebsite = parseInt(req.body.website);
+            var url = req.body.URL.split("ref=")[0];
+            url = url.split("?")[0];
+            console.log(url);
+            let data = await webScrapper(url,optWebsite);
+            if(data != null){
+                console.log(data);
+                var newOrder = new Order({
+                    productName: data.title,
+                    url:url,
+                    price:data.price,
+                    imageUrl:data.image,
+                    expectedPrice:req.body.userPrice
+                });
+                foundCustomer.orders.push(newOrder);
+                foundCustomer.save();
+            }
             //newOrder.save();
             res.redirect("/userdashboard/"+foundCustomer._email);
         }
@@ -140,3 +156,39 @@ app.post("/delete/:user",function(req,res){
 app.listen(3000, function(){
     console.log("Server is running on port 3000!!!");
 });
+
+async function webScrapper(url,optWebsite){
+    try{
+        const browser = await puppeteer.launch({headless:true});
+        const page = await browser.newPage();
+        await page.goto(url,{timeout:1200000,waitForSelector:productImage[optWebsite]});
+        try{
+            let data = await page.evaluate((optWebsite,productTitle,productImage,productPrice)=>{
+                var title = document.querySelector(productTitle[optWebsite]).innerText;
+                var image = document.querySelector(productImage[optWebsite]).src;
+                var price;
+                var subElement = optWebsite==0 ? 7 : 1;
+                if(document.querySelector(productPrice[optWebsite]) != null){
+                    price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement));
+                }else{
+                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML,substring(subElement));
+                }
+                return{
+                    title,
+                    image,
+                    price
+                }
+            }, optWebsite,productTitle,productImage,productPrice);
+            return data;
+        }catch(e){
+            console.log(e);
+            console.log("Error Happend ! Please check if you have opted the details correctly");
+        }
+        finally{
+            browser.close();
+        }
+    }
+    catch(e){
+        console.log("Invalid URL Given");
+    }
+}

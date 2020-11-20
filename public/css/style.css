@@ -76,7 +76,7 @@ footer {
 footer p {
   color: white;
 }
-img {
+.main-container img {
   height: 170px;
   width: 170px;
   border-radius: 50%;
@@ -96,7 +96,7 @@ form {
   margin: auto;
 }
 input[type="text"] {
-  width: 70%;
+  width: 60%;
   height: 40px;
   outline: 5px;
 }
@@ -105,13 +105,23 @@ input[type="number"] {
   height: 40px;
   outline: 5px;
 }
+select {
+  width: 10%;
+  height: 40px;
+  outline: 5px;
+}
 #ItemSubmit {
-  margin: 0 20px;
-  padding: 8px 15px;
-  color: white;
-  border-radius: 10px;
-  width: 100px;
-  background-color: limegreen;
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.45rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: rgb(28, 184, 65);
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+  text-align: center;
 }
 .item {
   display: flex;
@@ -171,4 +181,8 @@ td i:hover {
   align-items: center;
   flex-direction: column;
   margin-top: 20px;
+}
+#pimg {
+  max-width: 100px;
+  max-height: 200px;
 }

@@ -6,28 +6,39 @@
     </div>
     <form action="/item/<%=email%>" method="post">
         <input type="text" name="URL" required placeholder="Enter the item's URL ">
+        <select name="website" id="selector">
+            <option value="0">Amazon</option>
+            <option value="1">Flipkart</option>
+        </select>
         <input type="number" name="userPrice" required placeholder="Enter Wanted Price (&#8377)">
         <button id="ItemSubmit" type="submit">Add item</button>
     </form>
     <table>
         <thead>
             <tr>
+                <th width="14%">Product Image</th>
                 <th width="60%">Product Name</th>
-                <th width="12%">Product Price (&#8377)</th>
-                <th width="13%">Wanted Price (&#8377)</th>
-                <th width="12%">Tools</th>
+                <th width="8%">Product Price (&#8377)</th>
+                <th width="8%">Wanted Price (&#8377)</th>
+                <th width="10%">Tools</th>
             </tr>
         </thead>
         <caption>PRODUCT RECORD</caption>
         <tbody>
             <% for(i=0; i < orders.length ; i++) {%>
                 <tr>
+                    <td><img id="pimg" src="<%=orders[i].imageUrl%>" alt="Product-Image"></td>
                     <td><%=orders[i].productName%></td>
                     <td><%=orders[i].price%></td>
                     <td><%=orders[i].expectedPrice%></td>
-                    <td><form action="/delete/<%=email%>" method="POST">
-                        <button id="deleteItem" name="delete" value="<%=orders[i]._id%>" type="submit"><i class="material-icons delete">delete</i></button>
-                    </form></td>
+                    <td>
+                        <form action="/delete/<%=email%>" method="POST">
+                            <button id="deleteItem" name="delete" value="<%=orders[i]._id%>" type="submit"><i class="material-icons delete">delete</i></button>
+                        </form>
+                        <form action="<%=orders[i].url%>" target="_blank">
+                            <button type="submit"><i class="material-icons">shop</i></button>
+                        </form>
+                    </td>
                 </tr>
                 <%}%>
         </tbody>
