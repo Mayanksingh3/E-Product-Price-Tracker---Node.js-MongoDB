@@ -1,30 +1,36 @@
 //jshint esversion:6
 
+
+// Importing All the necessory modules
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
 const puppeteer = require("puppeteer");
+const nodemailer = require("nodemailer");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-
+// So that our app.js can use ejs files 
 app.set('view engine', 'ejs');
-
+//Connect to our database
 mongoose.connect("mongodb://localhost:27017/customerDB",{useNewUrlParser:true,useUnifiedTopology:true});
-
+// List that contains HTML tag of Title, Price and Image 
 var defaultList = [];
-var productTitle = ['#productTitle','._35KyD6'];
-var productImage = ['#imgTagWrapperId > img','._1Nyybr'];
+var productTitle = ['#productTitle','.B_NuCI'];
+var productImage = ['#imgTagWrapperId > img','._396cs4'];
 var productPrice = ['#priceblock_ourprice','.CEmiEU > div > div','#priceblock_dealprice','.CEmiEU > div > div'];
 
+//Order Schema
 const orderSchema = new mongoose.Schema({
     productName:String,
     url:String,
     imageUrl:String,
     price: Number,
-    expectedPrice:Number
+    expectedPrice:Number,
+    optWebsite:Number
 });
+//CustomerSchema
 const customerSchema = new mongoose.Schema({
     name:String,
     _email:String,
@@ -32,6 +38,7 @@ const customerSchema = new mongoose.Schema({
     orders:[orderSchema]
 });
 
+//Model of the schema
 const Customer = mongoose.model("Customer",customerSchema);
 const Order = mongoose.model("Order",orderSchema);
 
@@ -127,12 +134,16 @@ app.post("/item/:user",function(req,res){
             let data = await webScrapper(url,optWebsite);
             if(data != null){
                 console.log(data);
+                if(data.price < req.body.userPrice){
+                    sendMail(req.params.user,data.title,data.url);
+                }
                 var newOrder = new Order({
                     productName: data.title,
                     url:url,
                     price:data.price,
                     imageUrl:data.image,
-                    expectedPrice:req.body.userPrice
+                    expectedPrice:req.body.userPrice,
+                    optWebsite:optWebsite
                 });
                 foundCustomer.orders.push(newOrder);
                 foundCustomer.save();
@@ -169,9 +180,9 @@ async function webScrapper(url,optWebsite){
                 var price;
                 var subElement = optWebsite==0 ? 7 : 1;
                 if(document.querySelector(productPrice[optWebsite]) != null){
-                    price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement));
+                    price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement).replaceAll(",",""));
                 }else{
-                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML,substring(subElement));
+                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML,substring(subElement).replaceAll(",",""));
                 }
                 return{
                     title,
@@ -189,6 +200,97 @@ async function webScrapper(url,optWebsite){
         }
     }
     catch(e){
+        console.log("Invalid URL Given");
+    }
+}
+
+function sendMail(userMail,titleGiven,url){
+    console.log("Sending Mail to "+userMail);
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'priyamsrivastava9598@gmail.com',
+          pass: 'Coding1@gla'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'priyamsrivastava9598@gmail.com',
+        to: userMail,
+        subject: 'Buy Now Its Cheaper !!',
+        text: `Hi,\n\n`+titleGiven+" is now cheaper \n\nBUY NOW !!!!\n\n"+url
+      };
+      
+      // Function required to send the e-mail.
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+    });
+}
+repeat();
+function repeat(){
+    var date = new Date();
+    date.setHours(00);
+    //console.log(date.getHours());
+    if(date.getHours() == 00 ){
+        console.log("Updating the price List ...");
+        updatePrice();
+    }
+    setInterval(repeat,2000000);
+}
+c=0;
+function updatePrice(){
+    Customer.find(function(err,found){
+        if(!err){
+            found.forEach(async element => {
+                console.log(element.name);
+                await element.orders.forEach(async order => {
+                    console.log(c++);
+                    var currPrice = await webScrapeOrder(order.url,order.optWebsite);
+                    if(currPrice.price <= order.expectedPrice){
+                        console.log("Cheaper : Current Price "+currPrice.price+" User Expected Price "+order.expectedPrice);
+                        sendMail(element._email,order.title,order.url);
+                    }else{
+                        console.log("Expensive : Current Price "+currPrice.price+" User Expected Price "+order.expectedPrice);
+                    }
+                    
+                });
+            });
+        }
+    });
+}
+
+async function webScrapeOrder(url,optWebsite){
+    try{
+        const browser = await puppeteer.launch({headless:true});
+        const page = await browser.newPage();
+        await page.goto(url,{timeout:1200000,waitForSelector:productTitle[optWebsite]});
+        try{
+            let data = await page.evaluate((optWebsite,productPrice)=>{
+                var price;
+                var subElement = optWebsite==0 ? 7 : 1;
+                if(document.querySelector(productPrice[optWebsite]) != null){
+                    price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement).replaceAll(",",""));
+                }else{
+                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML,substring(subElement).replaceAll(",",""));
+                }
+                return{
+                    price
+                }
+            }, optWebsite,productPrice);
+            return data;
+        }catch(e){
+            console.log(e);
+            console.log("Error Happend ! Please check if you have opted the details correctly");
+        }
+        finally{
+            browser.close();
+            console.log("webScrapeOrder() finished");
+        }
+    }catch(e){
         console.log("Invalid URL Given");
     }
 }
