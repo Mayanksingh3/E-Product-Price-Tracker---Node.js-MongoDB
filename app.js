@@ -241,14 +241,12 @@ function repeat(){
     }
     setInterval(repeat,2000000);
 }
-c=0;
 function updatePrice(){
     Customer.find(function(err,found){
         if(!err){
             found.forEach(async element => {
                 console.log(element.name);
                 await element.orders.forEach(async order => {
-                    console.log(c++);
                     var currPrice = await webScrapeOrder(order.url,order.optWebsite);
                     if(currPrice.price <= order.expectedPrice){
                         console.log("Cheaper : Current Price "+currPrice.price+" User Expected Price "+order.expectedPrice);
