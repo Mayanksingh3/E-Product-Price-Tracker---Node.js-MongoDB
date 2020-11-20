@@ -233,7 +233,7 @@ function sendMail(userMail,titleGiven,url){
 repeat();
 function repeat(){
     var date = new Date();
-    date.setHours(00);
+    //date.setHours(00);
     //console.log(date.getHours());
     if(date.getHours() == 00 ){
         console.log("Updating the price List ...");
