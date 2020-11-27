@@ -8,6 +8,7 @@ const app = express();
 const mongoose = require("mongoose");
 const puppeteer = require("puppeteer");
 const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
@@ -16,7 +17,8 @@ app.set('view engine', 'ejs');
 //Connect to our database
 //mongoose.connect("mongodb://localhost:27017/customerDB",{useNewUrlParser:true,useUnifiedTopology:true});
 // List that contains HTML tag of Title, Price and Image 
-mongoose.connect("mongodb+srv://mayank:mayank@mayank.fxrpe.mongodb.net/customerDB?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser: true})
+var urlMongo = process.env.mongoURL; 
+mongoose.connect(urlMongo, {useUnifiedTopology: true, useNewUrlParser: true})
 .then( () => console.log("mongodb connected"))
 .catch(err => console.log(err) )
 
@@ -213,13 +215,13 @@ function sendMail(userMail,titleGiven,url){
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'priyamsrivastava9598@gmail.com',
-          pass: 'Coding1@gla'
+          user: process.env.email, // Your Email Address
+          pass: process.env.password // Your Password
         }
       });
       
       var mailOptions = {
-        from: 'priyamsrivastava9598@gmail.com',
+        from: process.env.email,
         to: userMail,
         subject: 'Buy Now Its Cheaper !!',
         text: `Hi,\n\n`+titleGiven+" is now cheaper \n\nBUY NOW !!!!\n\n"+url
