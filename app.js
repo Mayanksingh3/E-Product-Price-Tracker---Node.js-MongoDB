@@ -210,7 +210,7 @@ async function webScrapper(url,optWebsite){
     }
 }
 
-function sendMail(userMail,titleGiven,url){
+function sendMail(userMail,titleGiven,urlGiven){
     console.log("Sending Mail to "+userMail);
     var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -224,7 +224,7 @@ function sendMail(userMail,titleGiven,url){
         from: process.env.email,
         to: userMail,
         subject: 'Buy Now Its Cheaper !!',
-        text: `Hi,\n\n`+titleGiven+" is now cheaper \n\nBUY NOW !!!!\n\n"+url
+        text: `Hi,\n\n`+titleGiven+" is now cheaper \n\nBUY NOW !!!!\n\n"+urlGiven
       };
       
       // Function required to send the e-mail.
