@@ -272,6 +272,16 @@ input {
   color: blueviolet;
   box-shadow: 5px 5px 5px rgba(28, 143, 219, 0.301);
 }
+.invalid {
+  width: 100%;
+  text-align: center;
+  background-color: rgb(241, 82, 82);
+  color: white;
+  padding: 10px;
+  margin-bottom: 5px;
+  float: left;
+  visibility: hidden;
+}
 @media (max-width: 900px) {
   .left {
     display: none;

@@ -14,8 +14,12 @@ app.use(express.static("public"));
 // So that our app.js can use ejs files 
 app.set('view engine', 'ejs');
 //Connect to our database
-mongoose.connect("mongodb://localhost:27017/customerDB",{useNewUrlParser:true,useUnifiedTopology:true});
+//mongoose.connect("mongodb://localhost:27017/customerDB",{useNewUrlParser:true,useUnifiedTopology:true});
 // List that contains HTML tag of Title, Price and Image 
+mongoose.connect("mongodb+srv://mayank:mayank@mayank.fxrpe.mongodb.net/customerDB?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser: true})
+.then( () => console.log("mongodb connected"))
+.catch(err => console.log(err) )
+
 var defaultList = [];
 var productTitle = ['#productTitle','.B_NuCI'];
 var productImage = ['#imgTagWrapperId > img','._396cs4'];
