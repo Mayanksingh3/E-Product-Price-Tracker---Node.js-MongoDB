@@ -141,7 +141,7 @@ app.post("/item/:user",function(req,res){
             if(data != null){
                 console.log(data);
                 if(data.price < req.body.userPrice){
-                    sendMail(req.params.user,data.title,data.url);
+                    sendMail(req.params.user,data.title,url);
                 }
                 var newOrder = new Order({
                     productName: data.title,
