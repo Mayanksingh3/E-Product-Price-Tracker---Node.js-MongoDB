@@ -15,12 +15,15 @@ app.use(express.static("public"));
 // So that our app.js can use ejs files 
 app.set('view engine', 'ejs');
 //Connect to our database
-//mongoose.connect("mongodb://localhost:27017/customerDB",{useNewUrlParser:true,useUnifiedTopology:true});
-// List that contains HTML tag of Title, Price and Image 
-var urlMongo = process.env.mongoURL; 
-mongoose.connect(urlMongo, {useUnifiedTopology: true, useNewUrlParser: true})
+mongoose.connect("mongodb://localhost:27017/customerDB",{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false})
 .then( () => console.log("mongodb connected"))
-.catch(err => console.log(err) )
+.catch(err => console.log(err) );
+
+// List that contains HTML tag of Title, Price and Image 
+// var urlMongo = process.env.mongoURL; 
+// mongoose.connect(urlMongo, {useUnifiedTopology: true, useNewUrlParser: true})
+// .then( () => console.log("mongodb connected"))
+// .catch(err => console.log(err) );
 
 var defaultList = [];
 var productTitle = ['#productTitle','.B_NuCI'];
@@ -48,15 +51,13 @@ const customerSchema = new mongoose.Schema({
 const Customer = mongoose.model("Customer",customerSchema);
 const Order = mongoose.model("Order",orderSchema);
 
-
+// Get Routes 
 app.get("/",(req, res) => {
     res.sendFile(__dirname+"/index.html");
 });
-
 app.get("/login",function(req, res){
     res.sendFile(__dirname+"/pages/login.html");
 });
-
 app.get("/userdashboard/:user",(req,res) => {
     Customer.findOne({_email:req.params.user},function(err,foundCustomer){
         if(!err){
@@ -66,27 +67,24 @@ app.get("/userdashboard/:user",(req,res) => {
         }
     });
 });
-
 app.get("/signup",function (req, res){
     res.sendFile(__dirname+"/pages/signup.html")
 });
-
 app.get("/home",function(req,res){
     res.render("home",{pageTitle:"Welcome ! | E-Product Price Tracker"});
 });
-
 app.get("/about",function(req,res){
     res.render("about",{pageTitle:"About | E-Product Price Tracker"});
 });
-
 app.get("/contact",function(req,res){
     res.render("contact",{pageTitle:"Contact | E-Product Price Tracker"});
 });
-
 app.get("/team",function(req,res){
     res.render("team",{pageTitle:"Team | E-Product Price Tracker"});
 });
 
+
+// Post Routes
 app.post("/login",(req,res) => {
     userEmail = req.body.email;
     userPassword = req.body.password;
@@ -154,7 +152,6 @@ app.post("/item/:user",function(req,res){
                 foundCustomer.orders.push(newOrder);
                 foundCustomer.save();
             }
-            //newOrder.save();
             res.redirect("/userdashboard/"+foundCustomer._email);
         }
     });
@@ -170,46 +167,14 @@ app.post("/delete/:user",function(req,res){
     });
 });
 
+// Server Port
 app.listen(3000, function(){
     console.log("Server is running on port 3000!!!");
 });
 
-async function webScrapper(url,optWebsite){
-    try{
-        const browser = await puppeteer.launch({headless:true});
-        const page = await browser.newPage();
-        await page.goto(url,{timeout:1200000,waitForSelector:productImage[optWebsite]});
-        try{
-            let data = await page.evaluate((optWebsite,productTitle,productImage,productPrice)=>{
-                var title = document.querySelector(productTitle[optWebsite]).innerText;
-                var image = document.querySelector(productImage[optWebsite]).src;
-                var price;
-                var subElement = optWebsite==0 ? 7 : 1;
-                if(document.querySelector(productPrice[optWebsite]) != null){
-                    price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement).replaceAll(",",""));
-                }else{
-                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML,substring(subElement).replaceAll(",",""));
-                }
-                return{
-                    title,
-                    image,
-                    price
-                }
-            }, optWebsite,productTitle,productImage,productPrice);
-            return data;
-        }catch(e){
-            console.log(e);
-            console.log("Error Happend ! Please check if you have opted the details correctly");
-        }
-        finally{
-            browser.close();
-        }
-    }
-    catch(e){
-        console.log("Invalid URL Given");
-    }
-}
 
+
+// Mailing Code
 function sendMail(userMail,titleGiven,urlGiven){
     console.log("Sending Mail to "+userMail);
     var transporter = nodemailer.createTransport({
@@ -236,16 +201,18 @@ function sendMail(userMail,titleGiven,urlGiven){
         }
     });
 }
+
+// Midnight Update Price Code
 repeat();
 function repeat(){
     var date = new Date();
-    //date.setHours(00);
-    //console.log(date.getHours());
-    if(date.getHours() == 00 ){
+    // date.setHours(00);
+    // console.log(date.getHours());
+    if(date.getHours() == 0 ){
         console.log("Updating the price List ...");
         updatePrice();
     }
-    setInterval(repeat,2000000);
+    setInterval(repeat,3600000);
 }
 function updatePrice(){
     Customer.find(function(err,found){
@@ -254,8 +221,11 @@ function updatePrice(){
                 console.log(element.name);
                 await element.orders.forEach(async order => {
                     var currPrice = await webScrapeOrder(order.url,order.optWebsite);
+                    Customer.findOneAndUpdate({_email:element._email},{$set:{orders:{_id:order._id,price:currPrice.price,productName:order.productName,url:order.url,imageUrl:order.imageUrl,expectedPrice:order.expectedPrice,optWebsite:order.optWebsite}}})
+                        .then(()=>{console.log("Updated Price Successfully ! ");});
                     if(currPrice.price <= order.expectedPrice){
                         console.log("Cheaper : Current Price "+currPrice.price+" User Expected Price "+order.expectedPrice);
+                        Customer.updateOne({_email:element._email},{$set:{"order.price":currPrice.price}});
                         sendMail(element._email,order.title,order.url);
                     }else{
                         console.log("Expensive : Current Price "+currPrice.price+" User Expected Price "+order.expectedPrice);
@@ -267,6 +237,7 @@ function updatePrice(){
     });
 }
 
+// WebScrapprer Functions 
 async function webScrapeOrder(url,optWebsite){
     try{
         const browser = await puppeteer.launch({headless:true});
@@ -279,7 +250,7 @@ async function webScrapeOrder(url,optWebsite){
                 if(document.querySelector(productPrice[optWebsite]) != null){
                     price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement).replaceAll(",",""));
                 }else{
-                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML,substring(subElement).replaceAll(",",""));
+                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML.substring(subElement).replaceAll(",",""));
                 }
                 return{
                     price
@@ -295,6 +266,41 @@ async function webScrapeOrder(url,optWebsite){
             console.log("webScrapeOrder() finished");
         }
     }catch(e){
+        console.log("Invalid URL Given");
+    }
+}
+async function webScrapper(url,optWebsite){
+    try{
+        const browser = await puppeteer.launch({headless:true});
+        const page = await browser.newPage();
+        await page.goto(url,{timeout:1200000,waitForSelector:productImage[optWebsite]});
+        try{
+            let data = await page.evaluate((optWebsite,productTitle,productImage,productPrice)=>{
+                var title = document.querySelector(productTitle[optWebsite]).innerText;
+                var image = document.querySelector(productImage[optWebsite]).src;
+                var price;
+                var subElement = optWebsite==0 ? 7 : 1;
+                if(document.querySelector(productPrice[optWebsite]) != null){
+                    price = parseFloat(document.querySelector(productPrice[optWebsite]).innerHTML.substring(subElement).replaceAll(",",""));
+                }else{
+                    price = parseFloat(document.querySelector(productPrice[optWebsite+2]).innerHTML.substring(subElement).replaceAll(",",""));
+                }
+                return{
+                    title,
+                    image,
+                    price
+                }
+            }, optWebsite,productTitle,productImage,productPrice);
+            return data;
+        }catch(e){
+            console.log(e);
+            console.log("Error Happend ! Please check if you have opted the details correctly");
+        }
+        finally{
+            browser.close();
+        }
+    }
+    catch(e){
         console.log("Invalid URL Given");
     }
 }

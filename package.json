@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.10.11",
     "nodemailer": "^6.4.16",
+    "nodemon": "^2.0.7",
     "puppeteer": "^5.4.1"
   }
 }
