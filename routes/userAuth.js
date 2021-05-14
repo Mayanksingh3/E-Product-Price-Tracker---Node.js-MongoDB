@@ -1,46 +1,55 @@
 const router = require("express").Router();
 const User = require("../models/userModel");
 
-router.get("/login", (req, res) => {
-  res.sendFile(__dirname + "/pages/login.html");
-});
-
 router.post("/login", (req, res) => {
-  userEmail = req.body.email;
-  userPassword = req.body.password;
-  User.findOne({ _email: userEmail }, function (err, foundCustomer) {
+  const { email, password } = req.body;
+  console.log(req.body);
+  User.findOne({ email: email }, function (err, foundUser) {
     if (!err) {
-      if (foundCustomer) {
-        if (userPassword == foundCustomer.password) {
-          res.redirect("userdashboard/" + foundCustomer._email);
-        } else {
-          res.redirect("/login");
-        }
+      if (foundUser && password == foundUser.password) {
+        console.log("User Loggedin with email: " + foundUser.email);
+        res.redirect("/user/dashboard/" + foundUser.email);
       } else {
-        res.redirect("/login");
+        res.redirect("/signup");
       }
     }
   });
 });
+
 router.post("/signup", function (req, res) {
   console.log(req.body);
-  const email = req.body.email;
-  User.findOne({ _email: email }, function (err, foundCustomer) {
+  const { name, email, password } = req.body;
+
+  User.findOne({ email: email }, function (err, foundUser) {
     if (!err) {
-      if (!foundCustomer) {
-        const newCustomer = new User({
-          name: req.body.name,
-          _email: req.body.email,
-          password: req.body.password,
-          orders: defaultList,
+      if (!foundUser) {
+        const newUser = new User({
+          name,
+          email,
+          password,
         });
-        newCustomer.save(function (err) {
-          if (!err) {
+        newUser
+          .save()
+          .then(() => {
             res.redirect("/login");
-          }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+  });
+});
+router.get("/dashboard/:user", (req, res) => {
+  User.findOne({ email: req.params.user }, function (err, foundUser) {
+    if (!err) {
+      if (foundUser) {
+        res.render("dashboard", {
+          pageTitle: "User Dashboard",
+          userName: foundUser.name,
+          email: foundUser.email,
+          orders: foundUser.products,
         });
-      } else {
-        res.redirect("/login");
       }
     }
   });

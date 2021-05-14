@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const Product = require("./productModel");
 
 const userSchema = new mongoose.Schema({
   name: {
     required: true,
-    tyre: String,
+    type: String,
   },
   password: {
     required: true,
@@ -15,7 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   products: {
     type: Array,
-    default: [],
+    default: [Product],
   },
 });
 

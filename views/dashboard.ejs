@@ -4,7 +4,7 @@
         <h3>Welcome back! <%=userName%></h3>
         <p><%=email%></p>
     </div>
-    <form action="/item/<%=email%>" method="post">
+    <form action="/product/<%=email%>" method="post">
         <input type="text" name="URL" required placeholder="Enter the item's URL ">
         <select name="website" id="selector">
             <option value="0">Amazon</option>
@@ -27,13 +27,13 @@
         <tbody>
             <% for(i=0; i < orders.length ; i++) {%>
                 <tr>
-                    <td><img id="pimg" src="<%=orders[i].imageUrl%>" alt="Product-Image"></td>
-                    <td><%=orders[i].productName%></td>
-                    <td><%=orders[i].price%></td>
+                    <td><img id="pimg" src="<%=orders[i].imageURL%>" alt="Product-Image"></td>
+                    <td><%=orders[i].name%></td>
+                    <td><%=orders[i].actualPrice%></td>
                     <td><%=orders[i].expectedPrice%></td>
                     <td>
-                        <form action="/delete/<%=email%>" method="POST">
-                            <button id="deleteItem" name="delete" value="<%=orders[i]._id%>" type="submit"><i class="material-icons delete">delete</i></button>
+                        <form action="/product/delete/<%=email%>" method="POST">
+                            <button id="deleteItem" name="delete" value="<%=orders[i].name%>" type="submit"><i class="material-icons delete">delete</i></button>
                         </form>
                         <form action="<%=orders[i].url%>" target="_blank">
                             <button type="submit"><i class="material-icons">shop</i></button>
