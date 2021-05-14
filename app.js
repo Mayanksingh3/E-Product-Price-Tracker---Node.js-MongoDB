@@ -45,11 +45,11 @@ app.get("/signup", function (req, res) {
 });
 
 app.use(function (req, res) {
-  res.send("404");
+  res.sendFile(__dirname + "/pages/notFound.html");
 });
 
 app.listen(PORT, function () {
-  console.log("Server is running on port 3000!!!");
+  console.log("Server is running on port " + PORT + "!!!");
 });
 
 // repeat();

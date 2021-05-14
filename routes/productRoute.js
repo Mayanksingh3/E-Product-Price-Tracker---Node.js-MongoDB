@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/userModel");
 const Product = require("../models/productModel");
+const { sendMail } = require("../helper/mailer");
 const { webScrapeOrder, webScrapper } = require("../helper/scrapper");
 
 router.post("/:user", function (req, res) {
@@ -9,11 +10,12 @@ router.post("/:user", function (req, res) {
       const optWebsite = parseInt(req.body.website);
       var url = req.body.URL.split("ref=")[0];
       url = url.split("?")[0];
-      console.log(url);
+      console.log("Fetching details from " + url);
       let data = await webScrapper(url, optWebsite);
       if (data != null) {
         console.log(data);
         if (data.price < req.body.userPrice) {
+          console.log("Sending Mail to user : " + req.params.user);
           sendMail(req.params.user, data.title, url);
         }
         var newProduct = new Product({
@@ -25,7 +27,9 @@ router.post("/:user", function (req, res) {
           website: optWebsite,
         });
         foundUser.products.push(newProduct);
-        foundUser.save();
+        foundUser.save().then((err, user) => {
+          console.log(foundUser.email + " Added a product " + newProduct.name);
+        });
       }
       res.redirect("/user/dashboard/" + foundUser.email);
     }
@@ -33,21 +37,20 @@ router.post("/:user", function (req, res) {
 });
 
 router.post("/delete/:user", function (req, res) {
-  productID = req.body.delete;
+  productName = req.body.delete;
   userEmail = req.params.user;
-  console.log("User " + userEmail + " is deleting a product " + productID);
+  console.log(userEmail + " Deleted a Product " + productName);
   User.findOneAndUpdate(
     { email: userEmail },
     {
       $pull: {
-        products: { name: productID },
+        products: { name: productName },
       },
     },
     function (err, user) {
       if (err) {
         console.log(err);
       } else {
-        console.log(user);
         res.redirect("/user/dashboard/" + userEmail);
       }
     }
