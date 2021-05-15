@@ -1,8 +1,9 @@
-<%- include("header" )-%>
+
     <div class="main-container">
         <img src="/images/circle1.png" alt="user image">
         <h3>Welcome back! <%=userName%></h3>
         <p><%=email%></p>
+        <a href="/users/logout">Logout</a>
     </div>
     <form action="/product/<%=email%>" method="post">
         <input type="text" name="URL" required placeholder="Enter the item's URL ">
@@ -43,4 +44,3 @@
                 <%}%>
         </tbody>
     </table>
-<%- include("footer") -%>
