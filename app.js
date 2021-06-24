@@ -46,9 +46,6 @@ mongoose
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
-app.get("/home", function (req, res) {
-  res.render("home", { pageTitle: "Welcome ! | E-Product Price Tracker" });
-});
 app.get("/about", function (req, res) {
   res.render("about", { pageTitle: "About | E-Product Price Tracker" });
 });
@@ -57,12 +54,6 @@ app.get("/contact", function (req, res) {
 });
 app.get("/team", function (req, res) {
   res.render("team", { pageTitle: "Team | E-Product Price Tracker" });
-});
-app.get("/users/login", function (req, res) {
-  res.render("login");
-});
-app.get("/users/signup", function (req, res) {
-  res.render("register");
 });
 
 //Routes

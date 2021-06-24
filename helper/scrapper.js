@@ -17,7 +17,7 @@ exports.updatePrice = function () {
       found.forEach(async (element) => {
         console.log(element.name);
         await element.orders.forEach(async (order) => {
-          var currPrice = await webScrapeOrder(order.url, order.optWebsite);
+          var currPrice = await webScrapeOrder(order.url, order.websiteNumber);
           User.findOneAndUpdate(
             { email: element.email },
             {
@@ -29,7 +29,7 @@ exports.updatePrice = function () {
                   url: order.url,
                   imageUrl: order.imageUrl,
                   expectedPrice: order.expectedPrice,
-                  optWebsite: order.optWebsite,
+                  websiteNumber: order.websiteNumber,
                 },
               },
             }
@@ -63,30 +63,30 @@ exports.updatePrice = function () {
 };
 
 // WebScrapprer Functions
-exports.webScrapeOrder = async function (url, optWebsite) {
+exports.webScrapeOrder = async function (url, websiteNumber) {
   try {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(url, {
       timeout: 1200000,
-      waitForSelector: productTitle[optWebsite],
+      waitForSelector: productTitle[websiteNumber],
     });
     try {
       let data = await page.evaluate(
-        (optWebsite, productPrice) => {
+        (websiteNumber, productPrice) => {
           var price;
-          var subElement = optWebsite == 0 ? 7 : 1;
-          if (document.querySelector(productPrice[optWebsite]) != null) {
+          var subElement = websiteNumber == 0 ? 7 : 1;
+          if (document.querySelector(productPrice[websiteNumber]) != null) {
             price = parseFloat(
               document
-                .querySelector(productPrice[optWebsite])
+                .querySelector(productPrice[websiteNumber])
                 .innerHTML.substring(subElement)
                 .replaceAll(",", "")
             );
           } else {
             price = parseFloat(
               document
-                .querySelector(productPrice[optWebsite + 2])
+                .querySelector(productPrice[websiteNumber + 2])
                 .innerHTML.substring(subElement)
                 .replaceAll(",", "")
             );
@@ -95,7 +95,7 @@ exports.webScrapeOrder = async function (url, optWebsite) {
             price,
           };
         },
-        optWebsite,
+        websiteNumber,
         productPrice
       );
       return data;
@@ -106,40 +106,40 @@ exports.webScrapeOrder = async function (url, optWebsite) {
       );
     } finally {
       browser.close();
-      console.log("webScrapeOrder() finished");
     }
   } catch (e) {
     console.log("Invalid URL Given");
   }
 };
-exports.webScrapper = async function (url, optWebsite) {
+
+exports.webScrapper = async function (url, websiteNumber) {
   try {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(url, {
       timeout: 1200000,
-      waitForSelector: productImage[optWebsite],
+      waitForSelector: productImage[websiteNumber],
     });
     try {
       let data = await page.evaluate(
-        (optWebsite, productTitle, productImage, productPrice) => {
+        (websiteNumber, productTitle, productImage, productPrice) => {
           var title = document.querySelector(
-            productTitle[optWebsite]
+            productTitle[websiteNumber]
           ).innerText;
-          var image = document.querySelector(productImage[optWebsite]).src;
+          var image = document.querySelector(productImage[websiteNumber]).src;
           var price;
-          var subElement = optWebsite == 0 ? 7 : 1;
-          if (document.querySelector(productPrice[optWebsite]) != null) {
+          var subElement = websiteNumber == 0 ? 7 : 1;
+          if (document.querySelector(productPrice[websiteNumber]) != null) {
             price = parseFloat(
               document
-                .querySelector(productPrice[optWebsite])
+                .querySelector(productPrice[websiteNumber])
                 .innerHTML.substring(subElement)
                 .replaceAll(",", "")
             );
           } else {
             price = parseFloat(
               document
-                .querySelector(productPrice[optWebsite + 2])
+                .querySelector(productPrice[websiteNumber + 2])
                 .innerHTML.substring(subElement)
                 .replaceAll(",", "")
             );
@@ -150,7 +150,7 @@ exports.webScrapper = async function (url, optWebsite) {
             price,
           };
         },
-        optWebsite,
+        websiteNumber,
         productTitle,
         productImage,
         productPrice

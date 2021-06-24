@@ -17,7 +17,8 @@ exports.sendMail = function (userMail, titleGiven, urlGiven) {
       `Hi,\n\n` +
       titleGiven +
       " is now cheaper \n\nBUY NOW !!!!\n\n" +
-      urlGiven,
+      urlGiven +
+      "\nFrom,\nProduct Power",
   };
 
   // Function required to send the e-mail.
@@ -29,3 +30,4 @@ exports.sendMail = function (userMail, titleGiven, urlGiven) {
     }
   });
 };
+

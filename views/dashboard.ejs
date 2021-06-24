@@ -5,7 +5,7 @@
         <p><%=email%></p>
         <a href="/users/logout">Logout</a>
     </div>
-    <form action="/product/<%=email%>" method="post">
+    <form action="/product/add/<%=email%>" method="post">
         <input type="text" name="URL" required placeholder="Enter the item's URL ">
         <select name="website" id="selector">
             <option value="0">Amazon</option>

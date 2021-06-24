@@ -4,9 +4,14 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const { ensureAuthenticated } = require("../config/auth");
 
+// ROUTES LOGIN
+router.get("/login", function (req, res) {
+  res.render("login");
+});
+
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/users/dashboard",
+    successRedirect: "/users/dashboard/" + req.body.email,
     failureRedirect: "/users/login",
     failureFlash: true,
   })(req, res, next);
@@ -16,6 +21,11 @@ router.get("/logout", (req, res) => {
   req.logout();
   req.flash("success_msg", "You are logged out");
   res.redirect("/users/login");
+});
+
+// ROUTES SIGNUP
+router.get("/signup", function (req, res) {
+  res.render("register");
 });
 
 router.post("/signup", function (req, res) {
@@ -59,7 +69,8 @@ router.post("/signup", function (req, res) {
   }
 });
 
-router.get("/dashboard", ensureAuthenticated, (req, res) => {
+// ROUTES DASHBOARD
+router.get("/dashboard/:email", ensureAuthenticated, (req, res) => {
   User.findOne({ email: req.user.email }, function (err, foundUser) {
     if (!err) {
       if (foundUser) {

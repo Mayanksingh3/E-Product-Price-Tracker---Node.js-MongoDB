@@ -5,8 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 - Not Found</title>
+    <style>
+      body {
+        position: relative;
+        width: 99%;
+        height: 90vh;
+        background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+          ),
+          url("/images/404.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h1 {
+        color: white;
+      }
+      button {
+        padding: 15px 25px;
+        margin: auto;
+        display: block;
+        background-color: yellow;
+        outline: none;
+        border-radius: 7px;
+      }
+    </style>
   </head>
   <body>
-    <h1>404 - Not Found</h1>
+    <div>
+      <h1>404 - Not Found</h1>
+      <button>Back to Home</button>
+    </div>
   </body>
 </html>
