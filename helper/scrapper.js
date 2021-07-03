@@ -52,6 +52,7 @@ exports.webScrapeOrder = async function (url, websiteNumber) {
         "Error Happend ! Please check if you have opted the details correctly"
       );
     } finally {
+      page.close();
       browser.close();
     }
   } catch (e) {
@@ -110,6 +111,7 @@ exports.webScrapper = async function (url, websiteNumber) {
         "Error Happend ! Please check if you have opted the details correctly"
       );
     } finally {
+      page.close();
       browser.close();
     }
   } catch (e) {

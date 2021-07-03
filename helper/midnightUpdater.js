@@ -24,29 +24,35 @@ function updatePrice2() {
         console.log(user.name);
         for (let j = 0; j < user.products.length; j++) {
           var prod = user.products[j];
-          console.log(prod.name);
+          console.log("\t" + user.name + " --> " + prod.name);
           var currPrice = await webScrapeOrder(prod.url, prod.website);
           User.findOneAndUpdate(
-            { email: user.email },
+            { email: user.email, "products._id": prod._id },
             {
               $set: {
-                products: {
-                  _id: prod._id,
-                  actualPrice: currPrice.price,
-                  name: prod.name,
-                  url: prod.url,
-                  imageURL: prod.imageURL,
-                  expectedPrice: prod.expectedPrice,
-                  website: prod.website,
-                },
+                "products.$._id": prod._id,
+                "products.$.actualPrice": currPrice.price,
+                "products.$.name": prod.name,
+                "products.$.url": prod.url,
+                "products.$.imageURL": prod.imageURL,
+                "products.$.expectedPrice": prod.expectedPrice,
+                "products.$.website": prod.website,
               },
             }
           ).then(() => {
-            console.log("Updated Price Successfully ! ");
+            console.log(
+              "\t    " +
+                user.name +
+                " --> " +
+                prod.name +
+                " Updated Price Successfully ! "
+            );
           });
           if (currPrice.price < prod.expectedPrice) {
             console.log(
-              "Cheaper : Current Price " +
+              "\t " +
+                user.name +
+                " Cheaper : Current Price " +
                 currPrice.price +
                 " User Expected Price " +
                 order.expectedPrice
@@ -54,7 +60,9 @@ function updatePrice2() {
             sendMail(user.email, prod.name, prod.url);
           } else {
             console.log(
-              "Expensive : Current Price " +
+              "\t " +
+                user.name +
+                " Expensive : Current Price " +
                 currPrice.price +
                 " User Expected Price " +
                 prod.expectedPrice
