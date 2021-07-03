@@ -1,6 +1,4 @@
-const User = require("../models/userModel");
 const puppeteer = require("puppeteer");
-const sendMail = require("./mailer");
 
 var productTitle = ["#productTitle", ".B_NuCI"];
 var productImage = ["#imgTagWrapperId > img", "._396cs4"];
@@ -11,61 +9,10 @@ var productPrice = [
   ".CEmiEU > div > div",
 ];
 
-exports.updatePrice = function () {
-  User.find(function (err, found) {
-    if (!err) {
-      found.forEach(async (element) => {
-        console.log(element.name);
-        await element.orders.forEach(async (order) => {
-          var currPrice = await webScrapeOrder(order.url, order.websiteNumber);
-          User.findOneAndUpdate(
-            { email: element.email },
-            {
-              $set: {
-                orders: {
-                  _id: order._id,
-                  price: currPrice.price,
-                  productName: order.productName,
-                  url: order.url,
-                  imageUrl: order.imageUrl,
-                  expectedPrice: order.expectedPrice,
-                  websiteNumber: order.websiteNumber,
-                },
-              },
-            }
-          ).then(() => {
-            console.log("Updated Price Successfully ! ");
-          });
-          if (currPrice.price <= order.expectedPrice) {
-            console.log(
-              "Cheaper : Current Price " +
-                currPrice.price +
-                " User Expected Price " +
-                order.expectedPrice
-            );
-            User.updateOne(
-              { _email: element._email },
-              { $set: { "order.price": currPrice.price } }
-            );
-            sendMail(element._email, order.title, order.url);
-          } else {
-            console.log(
-              "Expensive : Current Price " +
-                currPrice.price +
-                " User Expected Price " +
-                order.expectedPrice
-            );
-          }
-        });
-      });
-    }
-  });
-};
-
-// WebScrapprer Functions
+// WebScrapprer Functions for updation of products
 exports.webScrapeOrder = async function (url, websiteNumber) {
   try {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto(url, {
       timeout: 1200000,
@@ -112,6 +59,7 @@ exports.webScrapeOrder = async function (url, websiteNumber) {
   }
 };
 
+// Webscrapper function for fetching the product first time
 exports.webScrapper = async function (url, websiteNumber) {
   try {
     const browser = await puppeteer.launch({ headless: true });

@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 require("./config/passport")(passport);
+require("./helper/midnightUpdater");
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));

@@ -7,7 +7,7 @@ const { urlFormat } = require("../helper/urlFormatter");
 const { webScrapeOrder, webScrapper } = require("../helper/scrapper");
 
 // ADD ONLINE PRODUCT
-router.post("/add/:email", function (req, res) {
+router.post("/add/:email", ensureAuthenticated, function (req, res) {
   User.findOne({ email: req.params.email }, async function (err, foundUser) {
     if (!err) {
       const websiteNumber = parseInt(req.body.website);
