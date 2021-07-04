@@ -3,8 +3,7 @@ const User = require("../models/userModel");
 
 function repeat() {
   var date = new Date();
-  date.setHours(00);
-  console.log(date.getHours());
+  // date.setHours(00);
   if (date.getHours() == 0) {
     console.log("Updating the price List Now!!");
     updatePrice2();

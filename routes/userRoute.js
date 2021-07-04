@@ -6,7 +6,7 @@ const { ensureAuthenticated } = require("../config/auth");
 
 // ROUTES LOGIN
 router.get("/login", function (req, res) {
-  res.render("login");
+  res.render("login1");
 });
 
 router.post("/login", (req, res, next) => {
@@ -25,7 +25,7 @@ router.get("/logout", (req, res) => {
 
 // ROUTES SIGNUP
 router.get("/signup", function (req, res) {
-  res.render("register");
+  res.render("register1");
 });
 
 router.post("/signup", function (req, res) {
@@ -65,7 +65,7 @@ router.post("/signup", function (req, res) {
       }
     });
   } else {
-    res.render("register", { errors });
+    res.render("register1", { errors });
   }
 });
 

@@ -12,7 +12,7 @@ var productPrice = [
 // WebScrapprer Functions for updation of products
 exports.webScrapeOrder = async function (url, websiteNumber) {
   try {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(url, {
       timeout: 1200000,

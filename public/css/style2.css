@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  scroll-behavior: smooth;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: #555;
+}
+
+/* -------------------------------------- */
+/* REUSABLE COMPONENT */
+/* -------------------------------------- */
+ul {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+}
+h1 {
+  font-weight: 400;
+  font-size: 240%;
+}
+h2 {
+  margin-bottom: 10px;
+  font-size: larger;
+  text-align: center;
+  color: rgb(126, 126, 126);
+}
+
+h2::after {
+  display: block;
+  height: 2px;
+  content: " ";
+  width: 100px;
+  margin: auto;
+  margin-top: 30px;
+  background-color: #eab543;
+}
+p {
+  line-height: 145%;
+  font-weight: 400;
+}
+a:link,
+a:visited {
+  color: #eab543;
+  text-decoration: none;
+  transition: border-bottom 0.2s, color 0.2s;
+}
+section {
+  padding: 80px 0;
+}
+.btn {
+  font-weight: 400;
+  font-size: medium;
+  padding: 7px 15px !important;
+  border-radius: 8px !important;
+}
+.btn-full:link,
+.btn-full:visited {
+  background-color: #eab543 !important;
+  color: #fff !important;
+  transition: background-color 0.2s, color 0.2s !important;
+}
+.btn-full:hover,
+.btn-full:active {
+  color: #555;
+  background-color: #eaa743 !important;
+}
+.btn-ghost:link,
+.btn-ghost:visited {
+  border: 2px solid #eab543 !important;
+  color: #eab543 !important;
+  transition: background-color 0.2s, color 0.2s, border 0.2s !important;
+}
+.btn-ghost:hover,
+.btn-ghost:active {
+  color: #fff !important;
+  background-color: #eab543;
+}
+
+/* -------------------------------------- */
+/* HEADER */
+/* -------------------------------------- */
+header {
+  height: 100vh;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+.header-top {
+  padding: 0 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 5px 5px 5px #000;
+}
+
+.main-nav {
+  display: flex;
+  margin: 22px 0 0 0;
+}
+.main-nav li a:link,
+.main-nav li a:visited {
+  color: #555;
+  padding: 0 0 10px 0;
+  margin: 0 10px;
+  border-bottom: 2px solid transparent;
+}
+.main-nav li a:hover,
+.main-nav li a:active {
+  border-bottom: 2px solid #eab543;
+}
+.logo {
+  height: 70px;
+}
+/* -------------------------------------- */
+/* HEADER MAIN */
+/* -------------------------------------- */
+/* .login-banner h2 {
+    color: white;
+  } */
+.header-content {
+  margin: auto;
+  width: 100%;
+  height: 90%;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #efefef; */
+  background: linear-gradient(to right, #b543ea, #43eab5);
+}
+.header-content .right,
+.header-content .left {
+  height: 90%;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.header-content .right {
+  padding: 40px;
+  width: 40%;
+  margin-left: 15px;
+  box-shadow: 0 1px 2px #555;
+}
+.header-content .left {
+  width: 40%;
+  background: url(../images/login.png);
+  background-size: cover;
+  background-position: center;
+}
+.login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.input-box {
+  margin: 15px 0;
+}
+input,
+.submit {
+  width: 100%;
+  height: 2rem;
+  outline: none;
+  border: 0;
+  border-radius: 2px;
+}
+input {
+  border-bottom: 2px solid #eab543;
+  background-color: #efefef;
+}
+.submit {
+  color: #fff;
+  margin-top: 20px;
+  background-color: #eab543;
+}
+.submit:hover {
+  background-color: #eaa743;
+}
+label {
+  font-size: medium;
+}
+.loginS {
+  text-align: right;
+  margin: 15px 0;
+}
+.invalid {
+  opacity: 0;
+  text-align: center;
+  margin: 0 0 15px 0;
+}
+/* -------------------------------------- */
+/* FOOTER */
+/* -------------------------------------- */
+
+footer {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style2.css" />
+    <title>Signup</title>
+  </head>
+  <body>
+    <header>
+        <div class="header-top">
+          <img src="icon3.png" alt="" class="logo" />
+          <ul class="main-nav">
+            <li><a class="btn btn-full" href="/">BACK TO HOME</a></li>
+            <li><a class="btn btn-ghost" href="/users/login">LOGIN</a></li>
+          </ul>
+        </div>
+        <div class="header-content">
+          <div class="left"></div>
+          <div class="right">
+            <form action="/users/signup" method="POST">
+                <div class="login-banner">
+                    <h2> <strong>SIGNUP NOW</strong></h2>
+                    <%- include("./partials/message")%>
+                  </div>
+                <div class="text-box">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter Your Name ...">
+                  </div>
+                  <div class="text-box">
+                    <label for="email">Email Address *</label>
+                    <input type="email" name="email" id="email" required placeholder="Enter Your Email ... ">
+                  </div>
+                  <div class="text-box">
+                    <label for="password">Password *</label>
+                    <input type="password" name="password" id="password" required placeholder="Enter Your Password ...">
+                  </div>
+                  <div class="text-box">
+                    <label for="password">Repeats Password *</label>
+                    <input type="password" name="password2" id="password2" required placeholder="Enter Your Password ...">
+                  </div>
+                  <div class="loginS"><h5>Already have an account? <a href="login">Login</a></h5></div>
+                <button type="submit" class="submit">SIGN UP</button>
+              </form>
+        </div>
+        </div>
+      </header>
+      <footer>
+          <h4>&#128151 MADE IN INDIA &#128151</h4>
+        <p>
+          This is a project made by me as my B.Tech Minor Project
+        </p>
+        <p>Designed / Developed by Mayank Kumar Singh</p>
+      </footer>
+      <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

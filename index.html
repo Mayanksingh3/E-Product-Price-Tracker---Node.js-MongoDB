@@ -2,31 +2,116 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome ! | E-Product Price Tracker</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="./css/animate.css">
+    <link rel="stylesheet" href="./css/style1.css" /> 
+    <title>Product Ping</title>
   </head>
   <body>
     <header>
-      <h2>E-Product Price Tracker</h2></i>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/team">Team</a></li>
-        <li><a href="/contact">Contacts</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
+      <div class="header-top">
+        <img src="./images/logo1.png" alt="" class="logo" />
+        <ul class="main-nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/users/login" class="btn btn-ghost">Login</a></li> 
+        </ul>
+      </div>
+      <div class="header-content">
+        <h1>Your own online Product price tracker</h1>
+        <p>
+          Track a product online on websites like Amazon and Flipkart and get
+          notified on the price drop. Product Ping is an online website that
+          tracks prices of an online product and notify the user on the price
+          drop. User can add multiple items and track the prices of the products
+          simultaneously. It saves precious time of user where user does not
+          have to check the website and browse through all the products before
+          buying it.
+        </p>
+        <a href="/users/signup" class="btn btn-full btn-animate">TRY IT FOR FREE NOW!</a>
+      </div>
     </header>
-    <main>
-      <section class="top">
-       <img src="images/circle1.png" alt="">
-      </section>
-      <section class="bottom">
-        <a href="/users/signup">Sign Up page</a>
-        <br />
-        <a href="/users/login">Log In page</a>
-      </section>
-    </main>
-    <footer><p>Copyright &#169;
-      by team (2020-21)</p></footer>
+    <section class="section-aboutus" id="about">
+      <h2>ABOUT US</h2>
+      <div class="section-aboutus-content">
+        <div class="aboutus-box">
+          <img src="./images/about1.jpg" alt="" />
+          <h4>PUPPETEER</h4>
+          <p>
+            Puppeteer is a Node library which provides a high-level API to
+            control headless Chrome or Chromium over the DevTools Protocol. It
+            can also be configured to use full (non-headless) Chrome or
+            Chromium.
+          </p>
+        </div>
+        <div class="aboutus-box">
+          <img src="./images/about2.png" alt="" />
+          <h4>NODEMAILER</h4>
+          <p>
+            Nodemailer is a module for Node. js applications to allow easy as
+            cake email sending. The project got started back in 2010 when there
+            was no sane option to send email messages, today it is the solution
+            most Node. js users turn to by default.
+          </p>
+        </div>
+        <div class="aboutus-box">
+          <img src="./images/about3.jpg" alt="" />
+          <h4>NODE JS</h4>
+          <p>
+            Node.js is an open-source, cross-platform, back-end JavaScript
+            runtime environment that runs on the V8 engine and executes
+            JavaScript code outside a web browser.
+          </p>
+        </div>
+        <div class="aboutus-box">
+          <img src="./images/about4.jpeg" alt="" />
+          <h4>MONGODB</h4>
+          <p>
+            MongoDB is a document database, which means it stores data in
+            JSON-like documents. Classified as a NoSQL database program, MongoDB
+            uses JSON-like documents with optional schemas.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section-contactus" id="contact">
+      <h2>CONTACT US</h2>
+      <div class="section-contactus-main">
+          <img class="myImage" src="./images/mayank.jpg" alt="">
+          <div class="contactus-content">
+              <h3>Mayank Kumar Singh</h3>
+              <i>Fullstack Developer</i>
+              <a href="mailto:mayank.singh1_cs18@gla.ac.in"><i class="fas fa-envelope"></i> : mayank.singh1_cs18@gla.ac.in</a>
+              <a href="https://github.com/Mayanksingh3" target="_blank"><i class="fab fa-github"></i> : Mayanksingh3</a>
+              <a href="https://www.linkedin.com/in/mayank-singh-27a3ba181/" target="_blank"><i class="fab fa-linkedin"></i> : Mayank Singh</a>
+              <a href="#"><i class="fab fa-blogger"></i> : Blog - coming soon</a>
+              <p>
+                Hi, My Name is Mayank Kumar Singh from Renukoot, Uttar Pradesh ,
+                India. I am currently pursuing B.Tech. from GLA University,
+                Mathura, India. I like creating and designing websites. This is
+                my project for B.tech Minor Project.
+              </p>
+          </div>
+      </div>
+    </section>
+    <footer>
+      <h4>&#128151 MADE IN INDIA &#128151</h4>
+      <p>
+        This is a project made by me as my B.Tech Minor Project
+      </p>
+      <p>Designed / Developed by Mayank Kumar Singh</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./js/jquery.waypoints.min.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const expressLayouts = require("express-ejs-layouts");
+// const expressLayouts = require("express-ejs-layouts");
 const app = express();
 const mongoose = require("mongoose");
 
@@ -13,7 +13,7 @@ require("./helper/midnightUpdater");
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(expressLayouts);
+// app.use(expressLayouts);
 app.use(
   session({
     secret: "this is a long format string!!!",
