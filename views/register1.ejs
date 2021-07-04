@@ -9,51 +9,70 @@
   </head>
   <body>
     <header>
-        <div class="header-top">
-          <img src="../images/icon3.png" alt="" class="logo" />
-          <ul class="main-nav">
-            <li><a class="btn btn-full" href="/">BACK TO HOME</a></li>
-            <li><a class="btn btn-ghost" href="/users/login">LOGIN</a></li>
-          </ul>
+      <div class="header-top">
+        <img src="../images/icon3.png" alt="" class="logo" />
+        <ul class="main-nav">
+          <li><a class="btn btn-full" href="/">BACK TO HOME</a></li>
+          <li><a class="btn btn-ghost" href="/users/login">LOGIN</a></li>
+        </ul>
+      </div>
+      <div class="header-content">
+        <div class="left"></div>
+        <div class="right">
+          <form action="/users/signup" method="POST">
+            <div class="login-banner">
+              <h2><strong>SIGNUP NOW</strong></h2>
+              <%- include("./partials/message")%>
+            </div>
+            <div class="input-box">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter Your Name ..."
+              />
+            </div>
+            <div class="input-box">
+              <label for="email">Email Address *</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                placeholder="Enter Your Email ... "
+              />
+            </div>
+            <div class="input-box">
+              <label for="password">Password *</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required
+                placeholder="Enter Your Password ..."
+              />
+            </div>
+            <div class="input-box">
+              <label for="password">Repeats Password *</label>
+              <input
+                type="password"
+                name="password2"
+                id="password2"
+                required
+                placeholder="Enter Your Password ..."
+              />
+            </div>
+            <div class="loginS">
+              <h5>Already have an account? <a href="login">Login</a></h5>
+            </div>
+            <button type="submit" class="submit">SIGN UP</button>
+          </form>
         </div>
-        <div class="header-content">
-          <div class="left"></div>
-          <div class="right">
-            <form action="/users/signup" method="POST">
-                <div class="login-banner">
-                    <h2> <strong>SIGNUP NOW</strong></h2>
-                    <%- include("./partials/message")%>
-                  </div>
-                <div class="input-box">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter Your Name ...">
-                  </div>
-                  <div class="input-box">
-                    <label for="email">Email Address *</label>
-                    <input type="email" name="email" id="email" required placeholder="Enter Your Email ... ">
-                  </div>
-                  <div class="input-box">
-                    <label for="password">Password *</label>
-                    <input type="password" name="password" id="password" required placeholder="Enter Your Password ...">
-                  </div>
-                  <div class="input-box">
-                    <label for="password">Repeats Password *</label>
-                    <input type="password" name="password2" id="password2" required placeholder="Enter Your Password ...">
-                  </div>
-                  <div class="loginS"><h5>Already have an account? <a href="login">Login</a></h5></div>
-                <button type="submit" class="submit">SIGN UP</button>
-              </form>
-        </div>
-        </div>
-      </header>
-      <footer>
-          <h4>&#128151 MADE IN INDIA &#128151</h4>
-        <p>
-          This is a project made by me as my B.Tech Minor Project
-        </p>
-        <p>Designed / Developed by Mayank Kumar Singh</p>
-      </footer>
-      <script
+      </div>
+    </header>
+    <br />
+    <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"

@@ -137,7 +137,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #efefef; */
   background: linear-gradient(to right, #b543ea, #43eab5);
 }
 .header-content .right,
@@ -203,12 +202,11 @@ label {
 /* FOOTER */
 /* -------------------------------------- */
 
-footer {
+.footer {
   background-color: white;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  display: none;
   align-items: center;
 }
 
