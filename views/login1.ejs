@@ -13,39 +13,50 @@
         <img src="../images/icon3.png" alt="" class="logo" />
         <ul class="main-nav">
           <li><a class="btn btn-full" href="/">BACK TO HOME</a></li>
-          <li><a class="btn btn-ghost" href="/users/signup">TRY IT FOR FREE !</a></li>
+          <li>
+            <a class="btn btn-ghost" href="/users/signup">TRY IT FOR FREE !</a>
+          </li>
         </ul>
       </div>
       <div class="header-content">
         <div class="left"></div>
-        <div class="right"><form action="/users/login" method="POST" >
+        <div class="right">
+          <form action="/users/login" method="POST">
             <div class="login-banner">
-            <h2> <strong>Login</strong></h2>
-            <%- include("./partials/message")%>
-          </div>
-          <br>
-          <div class="login-box">
-            <div class="input-box">
-              <label for="email">Email</label><br>
-              <input type="email" name="email" id="name" placeholder="Your Email" required>
+              <h2><strong>Login</strong></h2>
+              <%- include("./partials/message")%>
             </div>
-            <div class="input-box">
-              <label for="pass">Password</label><br>
-              <input type="password" name="password" id="pass" placeholder="Your Password" required>
+            <br />
+            <div class="login-box">
+              <div class="input-box">
+                <label for="email">Email</label><br />
+                <input
+                  type="email"
+                  name="email"
+                  id="name"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+              <div class="input-box">
+                <label for="pass">Password</label><br />
+                <input
+                  type="password"
+                  name="password"
+                  id="pass"
+                  placeholder="Your Password"
+                  required
+                />
+              </div>
+              <div class="loginS">
+                <h5>Don't have an account? <a href="signup">SignUp</a></h5>
+              </div>
+              <button type="submit" class="submit">LOG IN</button>
             </div>
-            <div class="loginS"><h5>Don't have an account? <a href="signup">SignUp</a></h5></div>
-            <button type="submit" class="submit">LOG IN</button>
-            </div>
-          </form></div>
+          </form>
+        </div>
       </div>
     </header>
-    <footer>
-        <h4>&#128151 MADE IN INDIA &#128151</h4>
-      <p>
-        This is a project made by me as my B.Tech Minor Project
-      </p>
-      <p>Designed / Developed by Mayank Kumar Singh</p>
-    </footer>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
