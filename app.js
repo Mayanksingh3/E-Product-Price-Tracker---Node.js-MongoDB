@@ -41,7 +41,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => console.log("mongodb connected"))
-  .catch((err) => console.log("MongoDB could not connect" + err));
+  .catch((err) => console.log("MongoDB could not connect " + err));
 
 //Static Routes
 app.get("/", (req, res) => {

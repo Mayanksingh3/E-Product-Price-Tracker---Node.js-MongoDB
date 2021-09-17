@@ -1,46 +1,121 @@
-
-    <div class="main-container">
-        <img src="/images/circle1.png" alt="user image">
-        <h3>Welcome back! <%=userName%></h3>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard | ProductPing</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/style5.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <img src="/images/icon3.png" alt="" class="logo" />
+        <ul class="main-nav">
+          <li><a href="">Home</a></li>
+          <li><a href="">About Us</a></li>
+          <li><a href="">Contact</a></li>
+          <li>
+            <a class="btn btn-ghost" href="/users/logout">LOGOUT</a>
+          </li>
+        </ul>
+      </div>
+      <div class="main-container">
+        <img src="/images/circle1.png" id="user-image" alt="user image" />
+        <h2>Welcome back! <%=userName%></h2>
         <p><%=email%></p>
-        <a href="/users/logout">Logout</a>
-    </div>
-    <form action="/product/add/<%=email%>" method="post">
-        <input type="text" name="URL" required placeholder="Enter the item's URL ">
-        <select name="website" id="selector">
+        <div class="main-button">
+          <a href="#INPUT" class="btn btn-ghost">ADD A PRODUCT</a>
+          <a href="#RECORD" class="btn btn-full">VIEW PRODUCTS</a>
+        </div>
+      </div>
+    </header>
+    <!-- next section -->
+    <div class="main-input">
+      <div class="input-form" id="INPUT">
+        <h2>Add A product</h2>
+        <form action="/product/add/<%=email%>" method="post">
+          <input
+            type="text"
+            name="URL"
+            required
+            placeholder="Enter the item's URL "
+          />
+          <input
+            type="number"
+            name="userPrice"
+            required
+            id="sec"
+            placeholder="Enter Wanted Price (&#8377;)"
+          />
+          <select name="website" id="selector">
             <option value="0">Amazon</option>
             <option value="1">Flipkart</option>
-        </select>
-        <input type="number" name="userPrice" required placeholder="Enter Wanted Price (&#8377)">
-        <button id="ItemSubmit" type="submit">Add item</button>
-    </form>
-    <table>
-        <thead>
+          </select>
+          <br />
+          <button class="input-button" type="submit">Add item</button>
+        </form>
+      </div>
+    </div>
+    <!-- next section -->
+    <div class="main-record">
+      <div class="product-record" id="RECORD">
+        <h2>PRODUCT RECORD</h2>
+        <table>
+          <thead>
             <tr>
-                <th width="14%">Product Image</th>
-                <th width="60%">Product Name</th>
-                <th width="8%">Product Price (&#8377)</th>
-                <th width="8%">Wanted Price (&#8377)</th>
-                <th width="10%">Tools</th>
+              <th width="14%">Product Image</th>
+              <th width="48%">Product Name</th>
+              <th width="14%">Current Price (&#8377;)</th>
+              <th width="14%">Wanted Price (&#8377;)</th>
+              <th width="10%">Tools</th>
             </tr>
-        </thead>
-        <caption>PRODUCT RECORD</caption>
-        <tbody>
+          </thead>
+          <tbody>
             <% for(i=0; i < orders.length ; i++) {%>
-                <tr>
-                    <td><img id="pimg" src="<%=orders[i].imageURL%>" alt="Product-Image"></td>
-                    <td><%=orders[i].name%></td>
-                    <td><%=orders[i].actualPrice%></td>
-                    <td><%=orders[i].expectedPrice%></td>
-                    <td>
-                        <form action="/product/delete/<%=email%>" method="POST">
-                            <button id="deleteItem" name="delete" value="<%=orders[i].name%>" type="submit"><i class="material-icons delete">delete</i></button>
-                        </form>
-                        <form action="<%=orders[i].url%>" target="_blank">
-                            <button type="submit"><i class="material-icons">shop</i></button>
-                        </form>
-                    </td>
-                </tr>
-                <%}%>
-        </tbody>
-    </table>
+            <tr>
+              <td>
+                <img
+                  id="pimg"
+                  src="<%=orders[i].imageURL%>"
+                  alt="Product-Image"
+                />
+              </td>
+              <td><%=orders[i].name%></td>
+              <td><%=orders[i].actualPrice%></td>
+              <td><%=orders[i].expectedPrice%></td>
+              <td>
+                <form action="/product/delete/<%=email%>" method="POST">
+                  <button
+                    id="deleteItem"
+                    name="delete"
+                    value="<%=orders[i].name%>"
+                    type="submit"
+                  >
+                    <i class="material-icons delete">delete</i>
+                  </button>
+                </form>
+                <form action="<%=orders[i].url%>" target="_blank">
+                  <button type="submit">
+                    <i class="material-icons">shop</i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <%}%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

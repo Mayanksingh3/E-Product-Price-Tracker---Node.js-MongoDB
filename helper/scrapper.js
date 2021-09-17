@@ -22,7 +22,8 @@ exports.webScrapeOrder = async function (url, websiteNumber) {
       let data = await page.evaluate(
         (websiteNumber, productPrice) => {
           var price;
-          var subElement = websiteNumber == 0 ? 7 : 1;
+          // var subElement = websiteNumber == 0 ? 7 : 1;
+          var subElement = 1;
           if (document.querySelector(productPrice[websiteNumber]) != null) {
             price = parseFloat(
               document
@@ -52,7 +53,7 @@ exports.webScrapeOrder = async function (url, websiteNumber) {
         "Error Happend ! Please check if you have opted the details correctly"
       );
     } finally {
-      page.close();
+      // page.close();
       browser.close();
     }
   } catch (e) {
@@ -77,7 +78,9 @@ exports.webScrapper = async function (url, websiteNumber) {
           ).innerText;
           var image = document.querySelector(productImage[websiteNumber]).src;
           var price;
-          var subElement = websiteNumber == 0 ? 7 : 1;
+          // var subElement = websiteNumber == 0 ? 7 : 1;
+          var subElement = 1;
+          console.log(subElement);
           if (document.querySelector(productPrice[websiteNumber]) != null) {
             price = parseFloat(
               document
@@ -111,7 +114,7 @@ exports.webScrapper = async function (url, websiteNumber) {
         "Error Happend ! Please check if you have opted the details correctly"
       );
     } finally {
-      page.close();
+      // page.close();
       browser.close();
     }
   } catch (e) {
