@@ -76,8 +76,8 @@
             <tr>
               <th width="14%">Product Image</th>
               <th width="48%">Product Name</th>
-              <th width="14%">Current Price (&#8377;)</th>
-              <th width="14%">Wanted Price (&#8377;)</th>
+              <th width="14%">Current Price</th>
+              <th width="14%">Wanted Price</th>
               <th width="10%">Tools</th>
             </tr>
           </thead>
@@ -92,8 +92,8 @@
                 />
               </td>
               <td><%=orders[i].name%></td>
-              <td><%=orders[i].actualPrice%></td>
-              <td><%=orders[i].expectedPrice%></td>
+              <td><%=orders[i].actualPrice%> (&#8377;)</td>
+              <td><%=orders[i].expectedPrice%> (&#8377;)</td>
               <td>
                 <form action="/product/delete/<%=email%>" method="POST">
                   <button

@@ -15,6 +15,7 @@ body {
 /* -------------------------------------- */
 /* REUSABLE COMPONENT */
 /* -------------------------------------- */
+
 ul {
   list-style: none;
 }
@@ -205,11 +206,27 @@ header {
 }
 .product-record table {
   margin-top: 50px;
+  border-collapse: collapse;
 }
 .product-record th {
-  margin-bottom: 10px;
+  margin-bottom: 50px;
 }
-
+.product-record td {
+  padding: 15px 0;
+  padding-left: 10px;
+  border: 5px solid #fff;
+  border-width: thin;
+}
+.product-record thead {
+  height: 70px;
+}
+.product-record form {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .product-record img {
-  height: 200px;
+  height: 180px;
+  width: 180px;
 }
