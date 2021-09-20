@@ -1,47 +1,73 @@
-<div class="main-container">
-  <h2>ABOUT</h2>
-</div>
-<div class="body-container">
-  <h1>E-Product Price Tracker</h1>
-  <br />
-  <h4 style="padding: 10px 20px; display: block">
-    Online websites like Amazon, Flipkart and many more website uses dynamic
-    pricing because of which prices changes periodically depending on market and
-    various other aspect.
-  </h4>
-  <h4 style="padding: 10px 20px; display: block">
-    E Product Price tracker is an online website that tracks prices of an online
-    product and notify the user on the price drop. User can add multiple items
-    and track the prices of the products simultaneously. It saves precious time
-    of user where user does not have to check the website and browse through all
-    the products before buying it. User need not to check daily websites like
-    Amazon, Flipkart our website will do this for the user. We will notify our
-    user through email or user can check directly by logging into our website.
-  </h4>
-  <h4 style="padding: 10px 20px; display: block">
-    We will use web scrapping technology to get the prices of the product from
-    their respective websites and show them on our website. And HTML for
-    structuring our website and CSS for styling of our website. JavaScript for
-    main functioning of our website. With help of back-end languages like
-    Node.js, ExpressJS, EJS Templating and MongoDB we have used it for storing
-    data and connecting our website to our database.
-  </h4>
-  <h1 style="padding: 15px 0px">Components Used</h1>
-  <img style="height: 250px" src="images/about1.png" alt="Puppeteer" />
-  <p style="padding: 20px 20px">
-    Puppeteer is a Node library which provides a high-level API to control
-    headless Chrome or Chromium over the DevTools Protocol. It can also be
-    configured to use full (non-headless) Chrome or Chromium It is the main tool
-    that is used for web scrapping to get data from website like
-    Amazon,Flipkart. It runs asynchronously in the background and does the work.
-    It uses chrominum browser for internet browsing
-  </p>
-  <img src="images/about2.png" alt="NodeMailer" />
-  <p style="padding: 20px 20px">
-    Nodemailer is a module for Node.js applications to allow easy as cake email
-    sending. The project got started back in 2010 when there was no sane option
-    to send email messages, today it is the solution most Node.js users turn to
-    by default. Nodemailer is used to send mail to the user to notify the user
-    about the price drop on the product.
-  </p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="./css/animate.css">
+    <link rel="stylesheet" href="./css/style1.css" /> 
+    <title>Product Ping</title>
+  </head>
+  <body>
+    <section class="section-aboutus" id="about">
+      <h2>ABOUT US</h2>
+      <div class="section-aboutus-content">
+        <div class="aboutus-box">
+          <img src="./images/about1.jpg" alt="" />
+          <h4>PUPPETEER</h4>
+          <p>
+            Puppeteer is a Node library which provides a high-level API to
+            control headless Chrome or Chromium over the DevTools Protocol. It
+            can also be configured to use full (non-headless) Chrome or
+            Chromium.
+          </p>
+        </div>
+        <div class="aboutus-box">
+          <img src="./images/about2.png" alt="" />
+          <h4>NODEMAILER</h4>
+          <p>
+            Nodemailer is a module for Node. js applications to allow easy as
+            cake email sending. The project got started back in 2010 when there
+            was no sane option to send email messages, today it is the solution
+            most Node. js users turn to by default.
+          </p>
+        </div>
+        <div class="aboutus-box">
+          <img src="./images/about3.jpg" alt="" />
+          <h4>NODE JS</h4>
+          <p>
+            Node.js is an open-source, cross-platform, back-end JavaScript
+            runtime environment that runs on the V8 engine and executes
+            JavaScript code outside a web browser.
+          </p>
+        </div>
+        <div class="aboutus-box">
+          <img src="./images/about4.jpeg" alt="" />
+          <h4>MONGODB</h4>
+          <p>
+            MongoDB is a document database, which means it stores data in
+            JSON-like documents. Classified as a NoSQL database program, MongoDB
+            uses JSON-like documents with optional schemas.
+          </p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <h4>&#128151 MADE IN INDIA &#128151</h4>
+      <p>
+        This is a project made by me as my B.Tech Minor Project
+      </p>
+      <p>Designed / Developed by Mayank Kumar Singh</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./js/jquery.waypoints.min.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
