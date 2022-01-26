@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="./css/style1.css" /> 
     <title>Product Ping</title>
   </head>
-  <body>
+  <body onload="preLoader()">
+    <div id="loader"></div>
     <header>
       <div class="header-top">
         <img src="./images/logo1.png" alt="" class="logo" />
@@ -113,5 +114,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="./js/jquery.waypoints.min.js"></script>
     <script src="./js/script.js"></script>
+    <script>
+      var loader = document.getElementById("loader");
+      function preLoader(){
+        loader.style.display = 'none';
+      }
+    </script>
   </body>
 </html>

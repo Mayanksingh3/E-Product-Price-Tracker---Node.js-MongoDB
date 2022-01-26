@@ -31,13 +31,17 @@ exports.webScrapeOrder = async function (url, websiteNumber) {
                 .innerHTML.substring(subElement)
                 .replaceAll(",", "")
             );
-          } else {
+          } else if (
+            document.querySelector(productPrice[websiteNumber + 2]) != null
+          ) {
             price = parseFloat(
               document
                 .querySelector(productPrice[websiteNumber + 2])
                 .innerHTML.substring(subElement)
                 .replaceAll(",", "")
             );
+          } else {
+            price = Number.MAX_VALUE;
           }
           return {
             price,
@@ -88,13 +92,17 @@ exports.webScrapper = async function (url, websiteNumber) {
                 .innerHTML.substring(subElement)
                 .replaceAll(",", "")
             );
-          } else {
+          } else if (
+            document.querySelector(productPrice[websiteNumber + 2]) != null
+          ) {
             price = parseFloat(
               document
                 .querySelector(productPrice[websiteNumber + 2])
                 .innerHTML.substring(subElement)
                 .replaceAll(",", "")
             );
+          } else {
+            price = Number.MAX_VALUE;
           }
           return {
             title,

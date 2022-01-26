@@ -17,12 +17,14 @@
     />
     <link rel="stylesheet" href="/css/style5.css" />
   </head>
-  <body>
+  <body onload="preLoader()">
+    <div id="loader"></div>
+    <div id="main-loader"><div id="loader2"></div></div>
     <header>
       <div class="header-top">
         <img src="/images/icon3.png" alt="" class="logo" />
         <ul class="main-nav">
-          <li><a href="">Home</a></li>
+          <li><a href="">Dashboard</a></li>
           <li><a href="/about">About Us</a></li>
           <li><a href="/contact">Contact</a></li>
           <li>
@@ -63,7 +65,7 @@
             <option value="1">Flipkart</option>
           </select>
           <br />
-          <button class="input-button" type="submit">Add item</button>
+          <button class="input-button" onclick="preLoader2()" type="submit">Add item</button>
         </form>
       </div>
     </div>
@@ -71,6 +73,10 @@
     <div class="main-record">
       <div class="product-record" id="RECORD">
         <h2>PRODUCT RECORD</h2>
+        <% if(orders.length == 0){ %>
+        <h4>What! Nothing to show</h4>
+        </tr>
+        <%} else {%>
         <table>
           <thead>
             <tr>
@@ -92,11 +98,18 @@
                 />
               </td>
               <td><%=orders[i].name%></td>
-              <td><%=orders[i].actualPrice%> (&#8377;)</td>
+              <td>
+                  <% if(orders[i].actualPrice == Number.MAX_VALUE) {%>
+                    Currently Unavailable
+                    <% } else {%>
+                  <%=orders[i].actualPrice%> (&#8377;)
+                  <%}%>
+              </td>
               <td><%=orders[i].expectedPrice%> (&#8377;)</td>
               <td>
                 <form action="/product/delete/<%=email%>" method="POST">
                   <button
+                    onclick="preLoader2()"
                     id="deleteItem"
                     name="delete"
                     value="<%=orders[i].name%>"
@@ -115,7 +128,18 @@
             <%}%>
           </tbody>
         </table>
+        <%}%>
       </div>
     </div>
+    <script>
+      var loader = document.getElementById("loader");
+      var loader2 = document.getElementById("main-loader");
+      function preLoader(){
+        loader.style.display = 'none';
+      }
+      function preLoader2(){
+        loader2.style.display = 'block';
+      }
+    </script>
   </body>
 </html>
