@@ -14,11 +14,11 @@ exports.sendMail = function (userMail, titleGiven, urlGiven) {
     to: userMail,
     subject: "Buy Now Its Cheaper !!",
     text:
-      `Hi,\n\n` +
+      `Hi user,\n\n` +
       titleGiven +
-      " is now cheaper \n\nBUY NOW !!!!\n\n" +
+      " is now cheaper and under your expected range. \n\nBUY NOW !!!!\n\n" +
       urlGiven +
-      "\nFrom,\nProduct Power",
+      "\nFrom,\nProduct Ping",
   };
 
   // Function required to send the e-mail.
@@ -30,4 +30,3 @@ exports.sendMail = function (userMail, titleGiven, urlGiven) {
     }
   });
 };
-
