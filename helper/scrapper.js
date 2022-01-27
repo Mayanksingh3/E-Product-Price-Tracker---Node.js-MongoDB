@@ -71,8 +71,9 @@ exports.webScrapeOrder = async function (url, websiteNumber) {
 exports.webScrapper = async function (url, websiteNumber) {
   try {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      executablePath: "/puppeteer",
     });
     const page = await browser.newPage();
     await page.goto(url, {
