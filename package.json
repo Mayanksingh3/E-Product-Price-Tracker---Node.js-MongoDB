@@ -17,6 +17,9 @@
     "url": "https://github.com/Mayanksingh2004/miniProjectSemV/issues"
   },
   "homepage": "https://github.com/Mayanksingh2004/miniProjectSemV#readme",
+  "engines": {
+    "node": "12.19.0"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
