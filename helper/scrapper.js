@@ -130,7 +130,7 @@ exports.webScrapper = async function (url, websiteNumber) {
       // page.close();
       browser.close();
     }
-  } catch (e) {
+  } finally {
     console.log("Invalid URL Given");
   }
 };
