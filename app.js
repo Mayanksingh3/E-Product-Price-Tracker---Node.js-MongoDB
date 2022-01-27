@@ -35,13 +35,10 @@ app.use(function (req, res, next) {
 
 //MongoDB Connect
 mongoose
-  .connect(
-    "mongodb+srv://mayanksingh:Test20Gla-Project@mayank.fxrpe.mongodb.net/customerDB?retryWrites=true&w=majority",
-    {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    }
-  )
+  .connect(MONGODB_URI, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
   .then(() => console.log("mongodb connected"))
   .catch((err) => console.log("MongoDB could not connect " + err));
 
