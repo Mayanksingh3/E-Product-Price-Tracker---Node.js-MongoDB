@@ -71,9 +71,8 @@ exports.webScrapeOrder = async function (url, websiteNumber) {
 exports.webScrapper = async function (url, websiteNumber) {
   try {
     const browser = await puppeteer.launch({
-      headless: false,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: "/puppeteer",
+      headless: true,
+      args: ["--no-sandbox"],
     });
     const page = await browser.newPage();
     await page.goto(url, {
@@ -131,7 +130,7 @@ exports.webScrapper = async function (url, websiteNumber) {
       // page.close();
       browser.close();
     }
-  } finally {
+  } catch (e) {
     console.log("Invalid URL Given");
   }
 };
