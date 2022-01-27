@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-
 var productTitle = ["#productTitle", ".B_NuCI"];
 var productImage = ["#imgTagWrapperId > img", "._396cs4"];
 var productPrice = [
@@ -12,7 +11,10 @@ var productPrice = [
 // WebScrapprer Functions for updation of products
 exports.webScrapeOrder = async function (url, websiteNumber) {
   try {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
     const page = await browser.newPage();
     await page.goto(url, {
       timeout: 1200000,
