@@ -63,7 +63,7 @@ exports.webScrapeOrder = async function (url, websiteNumber) {
       browser.close();
     }
   } catch (e) {
-    console.log("Invalid URL Given");
+    console.log("Invalid  URL Given");
   }
 };
 
