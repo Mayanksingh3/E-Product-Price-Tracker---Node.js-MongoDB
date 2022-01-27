@@ -35,11 +35,14 @@ app.use(function (req, res, next) {
 
 //MongoDB Connect
 mongoose
-  .connect(process.env.MONGODB_URI, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-  })
+  .connect(
+    "mongodb+srv://mayanksingh:Test20Gla-Project@mayank.fxrpe.mongodb.net/customerDB?retryWrites=true&w=majority",
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useFindAndModify: false,
+    }
+  )
   .then(() => console.log("mongodb connected"))
   .catch((err) => console.log("MongoDB could not connect " + err));
 
