@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
 
 //MongoDB Connect
 mongoose
-  .connect(process.env.MONGODB_LOCAL, {
+  .connect(process.env.MONGODB_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false,

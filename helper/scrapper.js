@@ -3,9 +3,9 @@ const puppeteer = require("puppeteer");
 var productTitle = ["#productTitle", ".B_NuCI"];
 var productImage = ["#imgTagWrapperId > img", "._396cs4"];
 var productPrice = [
-  "#priceblock_ourprice",
+  ".a-price span",
   ".CEmiEU > div > div",
-  "#priceblock_dealprice",
+  ".a-price span",
   ".CEmiEU > div > div",
 ];
 
