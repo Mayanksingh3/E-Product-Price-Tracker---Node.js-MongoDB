@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../css/style2.css" />
     <title>Signup</title>
   </head>
-  <body>
+  <body onload="preLoader()">
+    <div id="loader"></div>
     <header>
       <div class="header-top">
         <img src="../images/icon3.png" alt="" class="logo" />
@@ -87,5 +88,11 @@
       integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
       crossorigin="anonymous"
     ></script>
+    <script>
+      var loader = document.getElementById("loader");
+      function preLoader() {
+        loader.style.display = "none";
+      }
+    </script>
   </body>
 </html>
