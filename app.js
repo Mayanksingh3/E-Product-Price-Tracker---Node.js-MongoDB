@@ -72,5 +72,5 @@ app.use(function (req, res) {
 let port = process.env.PORT;
 
 app.listen(port, function () {
-  console.log("Server is running on port " + PORT + "!!!");
+  console.log("Server is running on port " + port + "!!!");
 });
