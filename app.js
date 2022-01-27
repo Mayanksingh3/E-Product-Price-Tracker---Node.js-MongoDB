@@ -40,7 +40,6 @@ mongoose
     {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-      useFindAndModify: false,
     }
   )
   .then(() => console.log("mongodb connected"))
@@ -70,7 +69,9 @@ app.use(function (req, res) {
 
 //Server
 let port = process.env.PORT;
-
+if (port == null || port == "") {
+  port = 3000;
+}
 app.listen(port, function () {
   console.log("Server is running on port " + port + "!!!");
 });
