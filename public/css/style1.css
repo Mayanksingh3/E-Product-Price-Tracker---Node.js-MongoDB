@@ -115,7 +115,7 @@ header {
   width: 85%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 100px;
+  margin-bottom: 8%;
 }
 .header-content {
   margin: auto;
@@ -274,4 +274,7 @@ footer {
   }
 }
 @media (max-width: 650px) {
+  .aboutus-box {
+    width: 95%;
+  }
 }
