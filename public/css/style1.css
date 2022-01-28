@@ -101,11 +101,13 @@ section {
 /* HEADER */
 /* -------------------------------------- */
 header {
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("../images/navBackground.jpg");
   background-size: cover;
   background-attachment: fixed;
+  padding-bottom: 50px;
   background-position: center;
 }
 .header-top {
@@ -190,7 +192,8 @@ header {
 /* CONTACT US */
 /* -------------------------------------- */
 .section-contactus {
-  height: 95vh;
+  min-height: 95vh;
+  height: fit-content;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("../images/contactBackground.jpg");
   background-size: cover;
@@ -233,4 +236,42 @@ footer {
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
   text-align: center;
   color: #fff;
+}
+/* -------------------------------------- */
+/* Media Querry */
+/* -------------------------------------- */
+
+@media (max-width: 850px) {
+  h1 {
+    font-weight: 400;
+    font-size: 140%;
+  }
+  p {
+    line-height: 105%;
+    font-weight: 400;
+  }
+  .section-aboutus-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .aboutus-box {
+    margin-top: 25px;
+    width: 80%;
+  }
+  .aboutus-box img {
+    width: 100%;
+    height: 250px;
+  }
+  .section-contactus-main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contactus-content {
+    margin-top: 25px;
+  }
+  .section-contactus-main img {
+    width: 55%;
+  }
+}
+@media (max-width: 650px) {
 }
