@@ -172,7 +172,9 @@ header {
 /* INPUT COMPONENT */
 /* -------------------------------------- */
 .main-input {
-  height: 50vh;
+  margin-top: 50px;
+  min-height: 50vh;
+  height: fit-content;
   width: 100%;
 }
 .input-form {
@@ -181,7 +183,6 @@ header {
   height: 50vh;
   background-color: rgba(255, 255, 255, 0.5);
   margin: auto;
-  padding: 50px;
 }
 .input-form input {
   width: 100%;
@@ -247,12 +248,37 @@ header {
   justify-content: center;
 }
 .product-record img {
-  height: 180px;
-  width: 180px;
+  height: 150px;
+  width: 150px;
 }
 .main-record .product-record h4 {
   margin-top: 35px;
   text-align: center;
   color: rgb(161, 161, 161);
   letter-spacing: 10px;
+}
+
+@media (max-width: 700px) {
+  .product-record img {
+    width: 100px;
+    height: 100px;
+  }
+}
+@media (max-width: 700px) {
+  .product-record {
+    width: 100%;
+  }
+  .product-record img {
+    width: 70px;
+    height: 70px;
+  }
+  .main-nav #a {
+    display: none;
+  }
+  .table-box thead {
+    font-size: 15px;
+  }
+  .table-box td {
+    font-size: 10px;
+  }
 }

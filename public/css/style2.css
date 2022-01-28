@@ -230,3 +230,28 @@ label {
   color: #cc3300;
   margin-bottom: 5px;
 }
+
+@media (max-width: 1000px) {
+  .left {
+    display: none;
+  }
+  .header-content .right {
+    width: 65%;
+  }
+}
+@media (max-width: 650px) {
+  .header-content .right {
+    width: 90%;
+  }
+}
+@media (max-width: 400px) {
+  .header-content {
+    padding: 10px;
+  }
+  .header-content .right {
+    width: 100%;
+  }
+  .btn {
+    font-size: 40%;
+  }
+}

@@ -19,13 +19,17 @@
     <div id="loader"></div>
     <header>
       <div class="header-top">
-        <img src="/images/logo1.png" alt="" class="logo" />
-        <ul class="main-nav">
-          <li><a href="#">Home</a></li>
-          <li><a href="#about">About us</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="/users/login" class="btn btn-ghost">Login</a></li> 
-        </ul>
+        <img src="./images/logo1.PNG" alt="" class="logo" />
+        <div class="header-nav">
+          <ul class="main-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About us</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="/users/login" class="btn btn-ghost">Login</a></li> 
+          </ul>
+          <i id="open" class="fas fa-align-justify" onclick="myNav()"></i>
+        </div>
+        
       </div>
       <div class="header-content">
         <h1>Your own online Product price tracker</h1>
@@ -118,6 +122,14 @@
       var loader = document.getElementById("loader");
       function preLoader(){
         loader.style.display = 'none';
+      }
+      function myNav(){
+        var icon = document.getElementById("open");
+        if(icon.classList == "fas fa-align-justify"){
+          icon.classList = "fas fa-times";
+        }else{
+          icon.classList = "fas fa-align-justify";
+        }
       }
     </script>
   </body>

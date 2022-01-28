@@ -122,9 +122,6 @@ header {
   color: #fff;
   width: 85%;
   flex-direction: column;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 }
 .header-content p {
   width: 70%;
@@ -133,6 +130,10 @@ header {
 }
 .main-nav {
   display: flex;
+  margin: 55px 15px 0 0;
+}
+#open {
+  display: none;
   margin: 55px 15px 0 0;
 }
 .main-nav li a:link,
@@ -256,7 +257,7 @@ footer {
   }
   .aboutus-box {
     margin-top: 25px;
-    width: 80%;
+    width: 75%;
   }
   .aboutus-box img {
     width: 100%;
@@ -274,7 +275,20 @@ footer {
   }
 }
 @media (max-width: 650px) {
+  p {
+    line-height: 85%;
+    font-weight: 400;
+  }
   .aboutus-box {
     width: 95%;
+  }
+  .main-nav {
+    display: none;
+  }
+  #open {
+    display: block;
+    font-size: 25px;
+    color: #fff;
+    font-weight: 400;
   }
 }
